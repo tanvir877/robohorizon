@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - Robo Horizon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<link rel="shortcut icon" href="https://pbs.twimg.com/profile_images/1499265096006000640/ZhEnSTch_400x400.jpg" type="image/x-icon">
+<script src="https://cdn.tailwindcss.com/3.4.16">
+
+</script>
+<link rel="stylesheet" href="contact.css">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: { primary: "#00FFFF", secondary: "#9D4EDD" },
+      borderRadius: {
+        none: "0px",
+        sm: "4px",
+        DEFAULT: "8px",
+        md: "12px",
+        lg: "16px",
+        xl: "20px",
+        "2xl": "24px",
+        "3xl": "32px",
+        full: "9999px",
+        button: "8px",
+      },
+    },
+  },
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js">
+</script>
+<!-- <style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+background-color: #0F172A;
+color: #E2E8F0;
+}
+@keyframes fadeInUp {
+from {
+opacity: 0;
+transform: translateY(20px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+@keyframes fadeInLeft {
+from {
+opacity: 0;
+transform: translateX(-20px);
+}
+to {
+opacity: 1;
+transform: translateX(0);
+}
+}
+@keyframes fadeInRight {
+from {
+opacity: 0;
+transform: translateX(20px);
+}
+to {
+opacity: 1;
+transform: translateX(0);
+}
+}
+.animate-fadeInUp {
+animation: fadeInUp 0.6s ease forwards;
+}
+.animate-fadeInLeft {
+animation: fadeInLeft 0.6s ease forwards;
+}
+.animate-fadeInRight {
+animation: fadeInRight 0.6s ease forwards;
+}
+.contact-form input:focus, .contact-form textarea:focus {
+border-color: #00FFFF;
+box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.2);
+}
+.map-container {
+position: relative;
+overflow: hidden;
+}
+.map-container::after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: linear-gradient(45deg, rgba(0, 255, 255, 0.1), transparent);
+pointer-events: none;
+}
+.contact-card {
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.contact-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px -5px rgba(0, 255, 255, 0.1);
+}
+#robotCanvas {
+position: fixed;
+top: 50%;
+right: 40px;
+transform: translateY(-50%);
+z-index: 40;
+pointer-events: none;
+opacity: 0.8;
+}
+.title-font {
+font-family: 'Orbitron', sans-serif;
+}
+.nav-glass {
+backdrop-filter: blur(10px);
+background-color: rgba(15, 23, 42, 0.8);
+}
+.dropdown {
+display: none;
+animation: fadeIn 0.3s ease;
+}
+.dropdown-trigger:hover .dropdown {
+display: block;
+}
+.search-input {
+background-color: rgba(30, 41, 59, 0.8);
+border: 1px solid #334155;
+color: white;
+transition: all 0.3s ease;
+}
+.search-input:focus {
+border-color: #00FFFF;
+box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.2);
+}
+.category-filter {
+position: relative;
+cursor: pointer;
+user-select: none;
+}
+.category-filter input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+height: 0;
+width: 0;
+}
+.checkmark {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+left: 0;
+height: 20px;
+width: 20px;
+background-color: #1E293B;
+border-radius: 4px;
+}
+.category-filter:hover input ~ .checkmark {
+background-color: #334155;
+}
+.category-filter input:checked ~ .checkmark {
+background-color: #00FFFF;
+}
+.checkmark:after {
+content: "";
+position: absolute;
+display: none;
+}
+.category-filter input:checked ~ .checkmark:after {
+display: block;
+}
+.category-filter .checkmark:after {
+left: 7px;
+top: 3px;
+width: 6px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.project-card {
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px -5px rgba(0, 255, 255, 0.1);
+}
+.badge {
+position: relative;
+overflow: hidden;
+}
+.badge::after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(255, 255, 255, 0.1);
+transform: translateX(-100%);
+transition: transform 0.3s ease;
+}
+.badge:hover::after {
+transform: translateX(0);
+}
+.sort-dropdown {
+position: relative;
+}
+.sort-dropdown-content {
+display: none;
+position: absolute;
+top: 100%;
+right: 0;
+z-index: 10;
+min-width: 160px;
+background-color: #1E293B;
+border-radius: 8px;
+box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.sort-dropdown:hover .sort-dropdown-content {
+display: block;
+}
+.sort-option {
+padding: 10px 15px;
+cursor: pointer;
+transition: all 0.2s ease;
+}
+.sort-option:hover {
+background-color: #2D3748;
+}
+.sort-option.active {
+background-color: rgba(0, 255, 255, 0.1);
+color: #00FFFF;
+}
+.view-toggle-btn {
+transition: all 0.2s ease;
+}
+.view-toggle-btn.active {
+color: #00FFFF;
+background-color: rgba(0, 255, 255, 0.1);
+}
+.skeleton {
+background: linear-gradient(90deg, #1E293B 25%, #2D3748 50%, #1E293B 75%);
+background-size: 200% 100%;
+animation: loading 1.5s infinite;
+}
+@keyframes loading {
+0% {
+background-position: 200% 0;
+}
+100% {
+background-position: -200% 0;
+}
+}
+.breadcrumb-item {
+position: relative;
+padding-right: 24px;
+}
+.breadcrumb-item:not(:last-child)::after {
+content: '/';
+position: absolute;
+right: 8px;
+top: 50%;
+transform: translateY(-50%);
+color: #64748B;
+}
+#ft-color {
+  background-color: #00000083;
+}
+#walter_white {
+  color: #D8D9DD;
+  }
+#walter_white:hover {
+  color: #00FFFF;
+  }
+</style> -->
+</head>
+<body>
+<!-- Navigation -->
+<nav class="nav-glass fixed top-0 left-0 right-0 z-50 py-4">
+  <div class="container mx-auto px-6 flex items-center justify-between">
+  <a href="index.html" class="text-2xl font-orbitron flex items-center">
+    <span class="text-primary font-bold mr-1">Robo</span>
+    <span class="text-white">Horizon</span>
+    <!-- <span class="text-xs text-secondary ml-2 mt-1">Innovate • Build • Research</span> -->
+  </a>
+  <div class="hidden md:flex items-center space-x-8">
+  <div class="dropdown-trigger relative group">
+  <button class="text-gray-300 hover:text-primary flex items-center">
+  <a href="Product.html" class="text-gray-300 hover:text-primary">
+  Products
+  </a>
+  <span class="w-4 h-4 flex items-center justify-center ml-1">
+  <!-- <i class="ri-arrow-down-s-line"></i> -->
+  </span>
+  </button>
+  <div class="dropdown absolute top-full left-0 mt-2 w-48 bg-gray-800 rounded shadow-lg z-10">
+  <!-- <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Arduino</a>
+  <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Sensors</a>
+  <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Motors</a>
+  <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Robotic Parts</a> -->
+  </div>
+  </div>
+  <div class="dropdown-trigger relative group">
+  <button class="text-gray-300 hover:text-primary flex items-center">
+  <a href="Research.html" class="text-gray-300 hover:text-primary">Research</a>
+  <span class="w-4 h-4 flex items-center justify-center ml-1">
+  <!-- <i class="ri-arrow-down-s-line"></i> -->
+  </span>
+  </button>
+  <div class="dropdown absolute top-full left-0 mt-2 w-48 bg-gray-800 rounded shadow-lg z-10">
+  <!-- <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">AI</a>
+  <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Drones</a>
+  <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Automation</a> -->
+  </div>
+  </div>
+  <a href="./About.html" class="text-gray-300 hover:text-primary">About</a>
+  <a href="contact.html" class="text-gray-300 hover:text-primary">Contact</a>
+  <a href="Cyberlink.html" class="text-gray-300 hover:text-primary">Robo-Canvas</a> <!-- New Cyberlink Page -->
+</div>
+  <div class="flex items-center space-x-4">
+  <div class="relative">
+  <input type="text" placeholder="Search..." class="search-input py-2 pl-8 pr-4 rounded-full text-sm w-40 md:w-60">
+  <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 flex items-center justify-center">
+  <i class="ri-search-line"></i>
+  </span>
+  </div>
+  <div class="relative">
+  <button class="text-gray-300 hover:text-primary w-10 h-10 flex items-center justify-center">
+  <i class="ri-shopping-cart-line ri-lg"></i>
+  </button>
+  <span class="absolute -top-1 -right-1 bg-primary text-gray-900 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">3</span>
+  </div>
+  <button class="md:hidden text-gray-300 hover:text-primary w-10 h-10 flex items-center justify-center">
+  <i class="ri-menu-line ri-lg"></i>
+  </button>
+  </div>
+  </div>
+  </nav>
+
+<!-- Main Content -->
+<main class="min-h-screen">
+<!-- Breadcrumb -->
+<div class="bg-gray-800 pt-24 pb-6">
+<div class="container mx-auto px-6">
+<div class="flex items-center text-sm text-gray-400">
+<a href="index.html" data-readdy="true" class="breadcrumb-item hover:text-primary">Home</a>
+<span class="breadcrumb-item text-primary">Contact Us</span>
+</div>
+</div>
+</div>
+
+<!-- Hero Section -->
+<section class="py-16 bg-gray-900">
+<div class="container mx-auto px-6">
+<div class="text-center max-w-3xl mx-auto animate-fadeInUp opacity-0">
+<h1 class="title-font text-4xl md:text-5xl font-bold mb-6">Get in Touch</h1>
+<p class="text-gray-400 text-lg mb-8">Have questions about our research projects or interested in collaboration? We'd love to hear from you.</p>
+</div>
+</div>
+</section>
+
+<!-- Contact Information Cards -->
+<section class="py-16 bg-gray-800">
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Office Location -->
+<div class="contact-card bg-gray-900 rounded-lg p-6 animate-fadeInLeft opacity-0" style="animation-delay: 0.2s">
+<div class="w-12 h-12 bg-primary bg-opacity-20 rounded-lg flex items-center justify-center mb-4">
+<i class="ri-map-pin-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Visit Our Office</h3>
+<p class="text-gray-400">123 Innovation Drive<br>Tech City, TC 54321<br>United States</p>
+<a href="#" class="text-primary hover:underline mt-4 inline-flex items-center">
+Get Directions
+<i class="ri-arrow-right-line ml-1"></i>
+</a>
+</div>
+
+<!-- Contact Info -->
+<div class="contact-card bg-gray-900 rounded-lg p-6 animate-fadeInUp opacity-0" style="animation-delay: 0.4s">
+<div class="w-12 h-12 bg-primary bg-opacity-20 rounded-lg flex items-center justify-center mb-4">
+<i class="ri-customer-service-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Contact Info</h3>
+<div class="space-y-3">
+<p class="text-gray-400 flex items-center">
+<i class="ri-phone-line mr-2"></i>
++1 (555) 123-4567
+</p>
+<p class="text-gray-400 flex items-center">
+<i class="ri-mail-line mr-2"></i>
+contact@robotechnexus.com
+</p>
+<p class="text-gray-400 flex items-center">
+<i class="ri-time-line mr-2"></i>
+Mon - Fri: 9AM - 6PM
+</p>
+</div>
+</div>
+
+<!-- Social Connect -->
+<div class="contact-card bg-gray-900 rounded-lg p-6 animate-fadeInRight opacity-0" style="animation-delay: 0.6s">
+<div class="w-12 h-12 bg-primary bg-opacity-20 rounded-lg flex items-center justify-center mb-4">
+<i class="ri-global-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-semibold mb-3">Social Connect</h3>
+<div class="grid grid-cols-2 gap-3">
+<a href="#" class="flex items-center text-gray-400 hover:text-primary">
+<i class="ri-twitter-x-line mr-2"></i>
+Twitter
+</a>
+<a href="#" class="flex items-center text-gray-400 hover:text-primary">
+<i class="ri-linkedin-line mr-2"></i>
+LinkedIn
+</a>
+<a href="#" class="flex items-center text-gray-400 hover:text-primary">
+<i class="ri-facebook-line mr-2"></i>
+Facebook
+</a>
+<a href="#" class="flex items-center text-gray-400 hover:text-primary">
+<i class="ri-instagram-line mr-2"></i>
+Instagram
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Contact Form Section -->
+<section class="py-16 bg-gray-900">
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<!-- Form -->
+<div class="animate-fadeInLeft opacity-0" style="animation-delay: 0.8s">
+<div class="bg-gray-800 rounded-lg p-8">
+<h2 class="text-2xl font-semibold mb-6">Send Us a Message</h2>
+<form class="contact-form space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-sm font-medium mb-2">First Name</label>
+<input type="text" class="w-full bg-gray-700 rounded-button border-none p-3 text-sm" required>
+</div>
+<div>
+<label class="block text-sm font-medium mb-2">Last Name</label>
+<input type="text" class="w-full bg-gray-700 rounded-button border-none p-3 text-sm" required>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium mb-2">Email Address</label>
+<input type="email" class="w-full bg-gray-700 rounded-button border-none p-3 text-sm" required>
+</div>
+<div>
+<label class="block text-sm font-medium mb-2">Subject</label>
+<select class="w-full bg-gray-700 rounded-button border-none p-3 text-sm" required>
+<option value="">Select a subject</option>
+<option value="research">Research Collaboration</option>
+<option value="product">Product Inquiry</option>
+<option value="support">Technical Support</option>
+<option value="other">Other</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium mb-2">Message</label>
+<textarea rows="5" class="w-full bg-gray-700 rounded-button border-none p-3 text-sm resize-none" required></textarea>
+</div>
+<button type="submit" class="w-full bg-primary text-gray-900 font-medium py-3 rounded-button hover:bg-opacity-80 transition-all">
+Send Message
+</button>
+</form>
+</div>
+</div>
+
+<!-- Map -->
+<div class="animate-fadeInRight opacity-0" style="animation-delay: 1s">
+<div class="map-container h-full min-h-[400px] rounded-lg overflow-hidden">
+<img src="https://public.readdy.ai/gen_page/map_placeholder_1280x720.png" alt="Location Map" class="w-full h-full object-cover">
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-16 bg-gray-800">
+<div class="container mx-auto px-6">
+<div class="text-center max-w-3xl mx-auto mb-12 animate-fadeInUp opacity-0" style="animation-delay: 1.2s">
+<h2 class="title-font text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+<p class="text-gray-400">Find quick answers to common questions about our research and collaboration opportunities.</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+<div class="animate-fadeInLeft opacity-0" style="animation-delay: 1.4s">
+<div class="bg-gray-900 rounded-lg p-6">
+<h3 class="text-lg font-semibold mb-3">How can I collaborate on research projects?</h3>
+<p class="text-gray-400">We welcome collaboration opportunities with academic institutions, industry partners, and individual researchers. Please contact us with your proposal and area of interest.</p>
+</div>
+</div>
+
+<div class="animate-fadeInRight opacity-0" style="animation-delay: 1.4s">
+<div class="bg-gray-900 rounded-lg p-6">
+<h3 class="text-lg font-semibold mb-3">Do you offer internship programs?</h3>
+<p class="text-gray-400">Yes, we offer internship opportunities for students and recent graduates in robotics, AI, and related fields. Check our careers page for current openings.</p>
+</div>
+</div>
+
+<div class="animate-fadeInLeft opacity-0" style="animation-delay: 1.6s">
+<div class="bg-gray-900 rounded-lg p-6">
+<h3 class="text-lg font-semibold mb-3">How can I access your research papers?</h3>
+<p class="text-gray-400">Our published research papers are available through our online repository. Some papers may require academic or institutional access.</p>
+</div>
+</div>
+
+<div class="animate-fadeInRight opacity-0" style="animation-delay: 1.6s">
+<div class="bg-gray-900 rounded-lg p-6">
+<h3 class="text-lg font-semibold mb-3">Can I visit your research facility?</h3>
+<p class="text-gray-400">We organize facility tours for potential collaborators and academic groups. Please contact us to schedule a visit with your specific interests.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-800 pt-16 pb-8" id="ft-color">
+  <div class="container mx-auto px-6">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
+  <div>
+  <a href="#" class="text-2xl font-orbitron flex items-center mb-6">
+    <span class="text-primary font-bold mr-1">Robo</span>
+    <span class="text-white">Horizon</span>
+    <!-- <span class="text-xs text-secondary ml-2 mt-1">Innovate • Build • Research</span> -->
+  </a>
+  <p class="text-gray-400 mb-6">Pioneering the future of robotics with cutting-edge technology and innovative research.</p>
+  <div class="flex space-x-4">
+  <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+  <i class="ri-twitter-x-line"></i>
+  </a>
+  <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+  <i class="ri-facebook-fill"></i>
+  </a>
+  <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+  <i class="ri-instagram-line"></i>
+  </a>
+  <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+  <i class="ri-linkedin-fill"></i>
+  </a>
+  </div>
+  </div>
+  <div>
+  <h3 class="text-lg font-semibold mb-6">Products</h3>
+  <ul class="space-y-3">
+  <li><a href="#" class="text-gray-400 hover:text-primary">Arduino</a></li>
+  <li><a href="#" class="text-gray-400 hover:text-primary">Sensors</a></li>
+  <li><a href="#" class="text-gray-400 hover:text-primary">Motors</a></li>
+  <li><a href="#" class="text-gray-400 hover:text-primary">Robotic Parts</a></li>
+  <li><a href="#" class="text-gray-400 hover:text-primary">Development Kits</a></li>
+  </ul>
+  </div>
+  <div>
+  <h3 class="text-lg font-semibold mb-6">Research</h3>
+  <ul class="space-y-3">
+  <li><a href="#" class="text-gray-400 hover:text-primary">AI & Machine Learning</a></li>
+  <li><a href="#" class="text-gray-400 hover:text-primary">Drone Technology</a></li>
+  <li><a href="#" class="text-gray-400 hover:text-primary">Automation Systems</a></li>
+  <li><a href="#" class="text-gray-400 hover:text-primary">Computer Vision</a></li>
+  <li><a href="#" class="text-gray-400 hover:text-primary">Publications</a></li>
+  </ul>
+  </div>
+  <div>
+  <h3 class="text-lg font-semibold mb-6">Contact</h3>
+  <ul class="space-y-3">
+  <li class="flex items-start">
+  <span class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-3">
+  <i class="ri-map-pin-line"></i>
+  </span>
+  <span class="text-gray-400">123 Innovation Drive, Tech City, TC 54321</span>
+  </li>
+  <li class="flex items-start">
+  <span class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-3">
+  <i class="ri-mail-line"></i>
+  </span>
+  <span class="text-gray-400">info@robotechnexus.com</span>
+  </li>
+  <li class="flex items-start">
+  <span class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-3">
+  <i class="ri-phone-line"></i>
+  </span>
+  <span class="text-gray-400">+1 (555) 123-4567</span>
+  </li>
+  </ul>
+  </div>
+  </div>
+  <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-700">
+  <div class="mb-4 md:mb-0">
+  <p class="text-gray-500 text-sm">© 2025 RoboTech Nexus. All rights reserved.</p>
+  </div>
+  <div class="flex items-center space-x-6">
+  <a href="#" class="text-gray-500 text-sm hover:text-gray-300">Privacy Policy</a>
+  <a href="#" class="text-gray-500 text-sm hover:text-gray-300">Terms of Service</a>
+  <a href="#" class="text-gray-500 text-sm hover:text-gray-300">Cookie Policy</a>
+  </div>
+  <div class="mt-4 md:mt-0 flex items-center space-x-4">
+  <span class="text-gray-500 text-sm">Payment Methods:</span>
+  <span class="w-8 h-8 flex items-center justify-center text-gray-400">
+  <i class="ri-visa-fill ri-lg"></i>
+  </span>
+  <span class="w-8 h-8 flex items-center justify-center text-gray-400">
+  <i class="ri-mastercard-fill ri-lg"></i>
+  </span>
+  <span class="w-8 h-8 flex items-center justify-center text-gray-400">
+  <i class="ri-paypal-fill ri-lg"></i>
+  </span>
+  </div>
+  </div>
+  </div>
+  </div>
+  </footer>
+  
+
+<!-- <canvas id="robotCanvas" width="120" height="120"></canvas>
+<div class="fixed bottom-6 right-6 z-[9999] robot-mascot">
+<div id="robotMascot" class="w-16 h-16 md:w-20 md:h-20 bg-gray-800 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-gray-700 transition-all">
+<i class="ri-robot-fill ri-2x text-primary"></i>
+</div>
+
+    <div id="chatDialog" class="hidden absolute bottom-24 right-0 w-80 md:w-96 bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+    <div class="p-4 bg-gray-700 flex justify-between items-center border-b border-gray-600">
+    <div class="flex items-center">
+    <div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-3">
+    <i class="ri-robot-fill text-primary"></i>
+    </div>
+    <h3 class="font-semibold">RoboTech Assistant</h3>
+    </div>
+    <div class="flex items-center gap-2">
+    <button id="minimizeChat" class="w-8 h-8 flex items-center justify-center hover:bg-gray-600 rounded-full transition-all">
+    <i class="ri-subtract-line"></i>
+    </button>
+    <button id="closeChat" class="w-8 h-8 flex items-center justify-center hover:bg-gray-600 rounded-full transition-all">
+    <i class="ri-close-line"></i>
+    </button>
+    </div>
+    </div>
+    <div id="chatMessages" class="h-80 overflow-y-auto p-4 space-y-4">
+    <div class="flex items-start gap-3">
+    <div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-20 rounded-full flex-shrink-0">
+    <i class="ri-robot-fill text-primary text-sm"></i>
+    </div>
+    <div class="bg-gray-700 rounded-lg p-3 text-sm max-w-[80%]">
+    Hello! How can I help you with our research projects today?
+    </div>
+    </div>
+    </div>
+    <div class="p-4 bg-gray-700 border-t border-gray-600">
+    <div class="flex flex-wrap gap-2 mb-3">
+    <button class="quick-action-btn bg-gray-600 hover:bg-gray-500 text-sm px-3 py-1 rounded-full transition-all">Latest Research</button>
+    <button class="quick-action-btn bg-gray-600 hover:bg-gray-500 text-sm px-3 py-1 rounded-full transition-all">AI Projects</button>
+    <button class="quick-action-btn bg-gray-600 hover:bg-gray-500 text-sm px-3 py-1 rounded-full transition-all">Contact Team</button>
+    </div>
+    <div class="flex gap-2">
+    <input id="chatInput" type="text" placeholder="Type your message..." class="flex-1 bg-gray-600 border-none rounded text-sm p-3">
+    <button id="sendMessage" class="bg-primary text-gray-900 px-4 rounded hover:bg-opacity-80 transition-all">
+    <i class="ri-send-plane-fill"></i>
+    </button>
+    </div>
+    </div>
+    </div>
+    </div> -->
+    <!-- <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const animatedElements = document.querySelectorAll(
+        ".animate-fadeInUp, .animate-fadeInLeft, .animate-fadeInRight",
+      );
+    
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+        },
+      );
+    
+      animatedElements.forEach((element) => {
+        observer.observe(element);
+      });
+    
+      const form = document.querySelector(".contact-form");
+      if (form) {
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const submitButton = form.querySelector('button[type="submit"]');
+          const originalText = submitButton.textContent;
+    
+          submitButton.disabled = true;
+          submitButton.innerHTML =
+            '<i class="ri-loader-4-line animate-spin"></i> Sending...';
+    
+          setTimeout(() => {
+            const successMessage = document.createElement("div");
+            successMessage.className =
+              "fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform transition-all duration-500 translate-x-full";
+            successMessage.innerHTML = `
+    <div class="flex items-center">
+    <i class="ri-checkbox-circle-line mr-2"></i>
+    Message sent successfully!
+    </div>
+    `;
+            document.body.appendChild(successMessage);
+    
+            setTimeout(() => {
+              successMessage.style.transform = "translateX(0)";
+            }, 100);
+    
+            setTimeout(() => {
+              successMessage.style.transform = "translateX(full)";
+              setTimeout(() => {
+                successMessage.remove();
+              }, 500);
+            }, 3000);
+    
+            submitButton.disabled = false;
+            submitButton.textContent = originalText;
+            form.reset();
+          }, 2000);
+        });
+      }
+      const canvas = document.getElementById("robotCanvas");
+      const ctx = canvas.getContext("2d");
+      let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      let robotRotation = 0;
+      let robotScale = 1;
+      let robotY = canvas.height / 2;
+      function drawRobot(rotation, scale, y) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.save();
+        ctx.translate(canvas.width / 2, y);
+        ctx.rotate(rotation);
+        ctx.scale(scale, scale);
+        const primaryColor = "#00FFFF";
+        const darkColor = "#1a1a1a";
+        ctx.beginPath();
+        ctx.fillStyle = darkColor;
+        ctx.arc(0, 0, 25, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.fillStyle = primaryColor;
+        ctx.arc(0, 0, 20, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.fillStyle = darkColor;
+        ctx.arc(-8, -5, 5, 0, Math.PI * 2);
+        ctx.arc(8, -5, 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.strokeStyle = darkColor;
+        ctx.lineWidth = 3;
+        ctx.arc(0, 5, 8, 0, Math.PI);
+        ctx.stroke();
+        const antennaHeight = 15;
+        ctx.beginPath();
+        ctx.strokeStyle = primaryColor;
+        ctx.lineWidth = 2;
+        ctx.moveTo(-10, -20);
+        ctx.lineTo(-5, -30 - antennaHeight * Math.sin(Date.now() / 300));
+        ctx.moveTo(10, -20);
+        ctx.lineTo(5, -30 - antennaHeight * Math.sin(Date.now() / 300 + Math.PI));
+        ctx.stroke();
+        ctx.restore();
+      }
+      function animate() {
+        requestAnimationFrame(animate);
+        drawRobot(robotRotation, robotScale, robotY);
+      }
+      window.addEventListener("scroll", () => {
+        const st = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollDiff = st - lastScrollTop;
+        const maxRotation = Math.PI / 6;
+        const rotationSpeed = 0.002;
+        const scaleRange = 0.2;
+        const yRange = 20;
+        robotRotation = Math.max(
+          Math.min(scrollDiff * rotationSpeed, maxRotation),
+          -maxRotation,
+        );
+        robotScale = 1 + Math.sin(st * 0.002) * scaleRange;
+        robotY = canvas.height / 2 + Math.sin(st * 0.005) * yRange;
+        lastScrollTop = st;
+      });
+      animate();
+      if (typeof window.chatBotInitialized === "undefined") {
+        window.chatBotInitialized = true;
+        const robotMascot = document.getElementById("robotMascot");
+        const chatDialog = document.getElementById("chatDialog");
+        const minimizeChat = document.getElementById("minimizeChat");
+        const closeChat = document.getElementById("closeChat");
+        const chatInput = document.getElementById("chatInput");
+        const sendMessage = document.getElementById("sendMessage");
+        const chatMessages = document.getElementById("chatMessages");
+        let isMinimized = false;
+        function toggleChat() {
+          if (isMinimized) {
+            chatDialog.classList.remove("h-[60px]");
+            isMinimized = false;
+          } else {
+            chatDialog.classList.toggle("hidden");
+          }
+        }
+        function addMessage(message, isUser = false) {
+          const messageDiv = document.createElement("div");
+          messageDiv.className = "flex items-start gap-3";
+          messageDiv.innerHTML = `
+    ${
+      isUser
+        ? `
+    <div class="w-8 h-8 flex items-center justify-center bg-gray-600 rounded-full flex-shrink-0 ml-auto order-2">
+    <i class="ri-user-line text-gray-300 text-sm"></i>
+    </div>
+    <div class="bg-primary bg-opacity-20 rounded-lg p-3 text-sm max-w-[80%] order-1 ml-auto">
+    ${message}
+    </div>
+    `
+        : `
+    <div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-20 rounded-full flex-shrink-0">
+    <i class="ri-robot-fill text-primary text-sm"></i>
+    </div>
+    <div class="bg-gray-700 rounded-lg p-3 text-sm max-w-[80%]">
+    ${message}
+    </div>
+    `
+    }
+    `;
+          chatMessages.appendChild(messageDiv);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        robotMascot.addEventListener("click", toggleChat);
+        minimizeChat.addEventListener("click", () => {
+          chatDialog.classList.add("h-[60px]");
+          isMinimized = true;
+        });
+        closeChat.addEventListener("click", () => {
+          chatDialog.classList.add("hidden");
+          isMinimized = false;
+        });
+        function handleSendMessage() {
+          const message = chatInput.value.trim();
+          if (message) {
+            addMessage(message, true);
+            chatInput.value = "";
+            setTimeout(() => {
+              addMessage(
+                "I'm here to help! Please note that I'm a demo assistant. For real assistance, please contact our research team.",
+              );
+            }, 1000);
+          }
+        }
+        sendMessage.addEventListener("click", handleSendMessage);
+        chatInput.addEventListener("keypress", (e) => {
+          if (e.key === "Enter") {
+            handleSendMessage();
+          }
+        });
+        document.querySelectorAll(".quick-action-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const action = btn.textContent;
+            addMessage(action, true);
+            setTimeout(() => {
+              addMessage(
+                `I'll help you find information about ${action}. Please note that I'm a demo assistant.`,
+              );
+            }, 1000);
+          });
+        });
+        // View Toggle
+        const viewToggleBtns = document.querySelectorAll(".view-toggle-btn");
+        const projectsGrid = document.getElementById("projects-grid");
+        viewToggleBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            viewToggleBtns.forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            const viewType = btn.getAttribute("data-view");
+            if (viewType === "grid") {
+              projectsGrid.classList.remove("grid-cols-1");
+              projectsGrid.classList.add("md:grid-cols-2", "lg:grid-cols-3");
+            } else if (viewType === "list") {
+              projectsGrid.classList.remove("md:grid-cols-2", "lg:grid-cols-3");
+              projectsGrid.classList.add("grid-cols-1");
+              // Adjust card layout for list view
+              const cards = document.querySelectorAll(".project-card");
+              cards.forEach((card) => {
+                if (viewType === "list") {
+                  card.classList.add("md:flex");
+                  const imgContainer = card.querySelector(".relative");
+                  const contentContainer = card.querySelector(".p-6");
+                  if (imgContainer && contentContainer) {
+                    imgContainer.classList.add("md:w-1/3");
+                    contentContainer.classList.add("md:w-2/3");
+                  }
+                } else {
+                  card.classList.remove("md:flex");
+                  const imgContainer = card.querySelector(".relative");
+                  const contentContainer = card.querySelector(".p-6");
+                  if (imgContainer && contentContainer) {
+                    imgContainer.classList.remove("md:w-1/3");
+                    contentContainer.classList.remove("md:w-2/3");
+                  }
+                }
+              });
+            }
+          });
+        });
+        // Sort Options
+        const sortOptions = document.querySelectorAll(".sort-option");
+        sortOptions.forEach((option) => {
+          option.addEventListener("click", () => {
+            sortOptions.forEach((opt) => opt.classList.remove("active"));
+            option.classList.add("active");
+            const sortType = option.getAttribute("data-sort");
+            // Implement sorting logic here
+            console.log(`Sorting by: ${sortType}`);
+          });
+        });
+        // Category Filtering
+        const categoryCheckboxes = document.querySelectorAll(".category-checkbox");
+        const projectCards = document.querySelectorAll(".project-card");
+        function updateFilters() {
+          const selectedCategories = Array.from(categoryCheckboxes)
+            .filter((checkbox) => checkbox.checked)
+            .map((checkbox) => checkbox.getAttribute("data-category"));
+          projectCards.forEach((card) => {
+            const cardCategories = card.getAttribute("data-category").split(" ");
+            const shouldShow = cardCategories.some((category) =>
+              selectedCategories.includes(category),
+            );
+            if (shouldShow || selectedCategories.length === 0) {
+              card.classList.remove("hidden");
+            } else {
+              card.classList.add("hidden");
+            }
+          });
+        }
+        categoryCheckboxes.forEach((checkbox) => {
+          checkbox.addEventListener("change", updateFilters);
+        });
+        // Search Functionality
+        const searchInput = document.querySelector(
+          'input[placeholder="Search projects..."]',
+        );
+        searchInput.addEventListener("input", () => {
+          const searchTerm = searchInput.value.toLowerCase();
+          projectCards.forEach((card) => {
+            const title = card.querySelector("h3").textContent.toLowerCase();
+            const description = card.querySelector("p").textContent.toLowerCase();
+            if (title.includes(searchTerm) || description.includes(searchTerm)) {
+              card.classList.remove("hidden");
+            } else {
+              card.classList.add("hidden");
+            }
+          });
+        });
+      }
+    });
+    </script> -->
+    <script src="Research.js"></script>
+    </body>
+    </html>
+    

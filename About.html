@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us - Robo Horizon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<link rel="shortcut icon" href="https://pbs.twimg.com/profile_images/1499265096006000640/ZhEnSTch_400x400.jpg" type="image/x-icon">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#00FFFF',secondary:'#9D4EDD'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="stylesheet" href="about.css">
+<!-- <style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+background-color: #0F172A;
+color: #E2E8F0;
+}
+.title-font {
+font-family: 'Orbitron', sans-serif;
+}
+.nav-glass {
+backdrop-filter: blur(10px);
+background-color: rgba(15, 23, 42, 0.8);
+}
+.dropdown {
+display: none;
+animation: fadeIn 0.3s ease;
+}
+.dropdown-trigger:hover .dropdown {
+display: block;
+}
+.search-input {
+background-color: rgba(30, 41, 59, 0.8);
+border: 1px solid #334155;
+color: white;
+transition: all 0.3s ease;
+}
+.search-input:focus {
+border-color: #00FFFF;
+box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.2);
+}
+.team-card {
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.team-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px -5px rgba(0, 255, 255, 0.1);
+}
+.team-card .social-links {
+opacity: 0;
+transform: translateY(10px);
+transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.team-card:hover .social-links {
+opacity: 1;
+transform: translateY(0);
+}
+.team-card .overlay {
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+.team-card:hover .overlay {
+opacity: 0.5;
+}
+.counter-value {
+transition: all 0.5s ease;
+}
+.testimonial-card {
+transition: transform 0.3s ease;
+}
+.testimonial-card:hover {
+transform: translateY(-5px);
+}
+.partner-logo {
+filter: grayscale(100%);
+opacity: 0.7;
+transition: all 0.3s ease;
+}
+.partner-logo:hover {
+filter: grayscale(0%);
+opacity: 1;
+}
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Journey Section Styles */
+.journey-section {
+  padding: 80px 0;
+  background-color: #1E293B;
+  position: relative;
+  overflow: hidden;
+}
+
+.journey-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(157, 78, 221, 0.05), transparent 60%),
+              radial-gradient(circle at bottom left, rgba(0, 255, 255, 0.05), transparent 60%);
+  pointer-events: none;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section-header.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-header h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #fff;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #00FFFF, #9D4EDD);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.section-header p {
+  color: #94A3B8;
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.timeline-container {
+  position: relative;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, 
+    rgba(0, 255, 255, 0.7), 
+    rgba(157, 78, 221, 0.7), 
+    rgba(0, 255, 255, 0.7));
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.timeline-items {
+  position: relative;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 80px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-item:nth-child(odd) {
+  margin-right: 50%;
+  padding-right: 3rem;
+  text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+  margin-left: 50%;
+  padding-left: 3rem;
+  text-align: left;
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #00FFFF;
+  transform: translateY(-50%) scale(0);
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              background-color 0.5s ease;
+  z-index: 2;
+  box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.5);
+}
+
+.timeline-item:nth-child(odd) .timeline-dot {
+  right: -10px;
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+  left: -10px;
+}
+
+.timeline-item:nth-child(3n) .timeline-dot {
+  background-color: #9D4EDD;
+  box-shadow: 0 0 0 0 rgba(157, 78, 221, 0.5);
+}
+
+.timeline-item.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item.animate-in .timeline-dot {
+  transform: translateY(-50%) scale(1);
+}
+
+.timeline-content {
+  background-color: rgba(26, 34, 52, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: all 0.5s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(0, 255, 255, 0.05) 0%, 
+    rgba(0, 0, 0, 0) 50%,
+    rgba(157, 78, 221, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.timeline-item.animate-in .timeline-content {
+  transform: translateY(0);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-item.animate-in .timeline-content::before {
+  opacity: 1;
+}
+
+.timeline-year {
+  display: inline-block;
+  font-family: 'Orbitron', sans-serif;
+  color: #00FFFF;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  position: relative;
+  padding: 4px 12px;
+  border-radius: 4px;
+  background-color: rgba(0, 255, 255, 0.1);
+}
+
+.timeline-item:nth-child(3n) .timeline-year {
+  color: #9D4EDD;
+  background-color: rgba(157, 78, 221, 0.1);
+}
+
+.timeline-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.5px;
+}
+
+.timeline-description {
+  color: #94A3B8;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+#ft-color {
+  background-color: #00000083;
+}
+
+/* Responsive adjustments for timeline */
+@media (max-width: 768px) {
+  .timeline-line {
+    left: 20px;
+  }
+  
+  .timeline-item:nth-child(odd),
+  .timeline-item:nth-child(even) {
+    margin-left: 60px;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: left;
+  }
+  
+  .timeline-item:nth-child(odd) .timeline-dot,
+  .timeline-item:nth-child(even) .timeline-dot {
+    left: 10px;
+    right: auto;
+  }
+}
+
+/* Pulse animation for timeline dots */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(0, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 255, 0);
+  }
+}
+
+@keyframes pulsePurple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(157, 78, 221, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(157, 78, 221, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(157, 78, 221, 0);
+  }
+}
+
+.timeline-item.animate-in .timeline-dot {
+  animation: pulse 2s infinite;
+}
+
+.timeline-item:nth-child(3n).animate-in .timeline-dot {
+  animation: pulsePurple 2s infinite;
+}
+
+/* Staggered entrance for content elements */
+.timeline-content > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.timeline-item.animate-in .timeline-content > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item.animate-in .timeline-year {
+  transition-delay: 0.2s;
+}
+
+.timeline-item.animate-in .timeline-title {
+  transition-delay: 0.4s;
+}
+
+.timeline-item.animate-in .timeline-description {
+  transition-delay: 0.6s;
+}
+
+/* Hover effects */
+.timeline-content:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
+}
+
+.timeline-item:nth-child(odd) .timeline-content:hover {
+  transform: translateY(-5px) translateX(-5px) !important;
+}
+
+.timeline-item:nth-child(even) .timeline-content:hover {
+  transform: translateY(-5px) translateX(5px) !important;
+}
+</style> -->
+</head>
+<body>
+<!-- Navigation -->
+<nav class="nav-glass fixed top-0 left-0 right-0 z-50 py-4">
+  <div class="container mx-auto px-6 flex items-center justify-between">
+  <a href="index.html" class="text-2xl font-orbitron flex items-center">
+    <span class="text-primary font-bold mr-1">Robo</span>
+    <span class="text-white">Horizon</span>
+    <!-- <span class="text-xs text-secondary ml-2 mt-1">Innovate • Build • Research</span> -->
+  </a>
+  <div class="hidden md:flex items-center space-x-8">
+  <div class="dropdown-trigger relative group">
+  <button class="text-gray-300 hover:text-primary flex items-center">
+  <a href="Product.html" class="text-gray-300 hover:text-primary">
+  Products
+  </a>
+  <span class="w-4 h-4 flex items-center justify-center ml-1">
+  <!-- <i class="ri-arrow-down-s-line"></i> -->
+  </span>
+  </button>
+  <div class="dropdown absolute top-full left-0 mt-2 w-48 bg-gray-800 rounded shadow-lg z-10">
+  <!-- <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Arduino</a>
+  <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Sensors</a>
+  <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Motors</a>
+  <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Robotic Parts</a> -->
+  </div>
+  </div>
+  <div class="dropdown-trigger relative group">
+  <button class="text-gray-300 hover:text-primary flex items-center">
+  <a href="Research.html" class="text-gray-300 hover:text-primary">Research</a>
+  <span class="w-4 h-4 flex items-center justify-center ml-1">
+  <!-- <i class="ri-arrow-down-s-line"></i> -->
+  </span>
+  </button>
+  <div class="dropdown absolute top-full left-0 mt-2 w-48 bg-gray-800 rounded shadow-lg z-10">
+  <!-- <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">AI</a>
+  <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Drones</a>
+  <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Automation</a> -->
+  </div>
+  </div>
+  <a href="./About.html" class="text-gray-300 hover:text-primary">About</a>
+  <a href="contact.html" class="text-gray-300 hover:text-primary">Contact</a>
+  <a href="Cyberlink.html" class="text-gray-300 hover:text-primary">Robo-Canvas</a> <!-- New Cyberlink Page -->
+</div>
+  <div class="flex items-center space-x-4">
+  <div class="relative">
+  <input type="text" placeholder="Search..." class="search-input py-2 pl-8 pr-4 rounded-full text-sm w-40 md:w-60">
+  <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 flex items-center justify-center">
+  <i class="ri-search-line"></i>
+  </span>
+  </div>
+  <div class="relative">
+  <button class="text-gray-300 hover:text-primary w-10 h-10 flex items-center justify-center">
+  <i class="ri-shopping-cart-line ri-lg"></i>
+  </button>
+  <span class="absolute -top-1 -right-1 bg-primary text-gray-900 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">3</span>
+  </div>
+  <button class="md:hidden text-gray-300 hover:text-primary w-10 h-10 flex items-center justify-center">
+  <i class="ri-menu-line ri-lg"></i>
+  </button>
+  </div>
+  </div>
+  </nav>
+<!-- Breadcrumb -->
+<div class="bg-gray-800 pt-24 pb-6">
+<div class="container mx-auto px-6">
+<div class="flex items-center text-sm text-gray-400">
+<a href="index.html" data-readdy="true" class="hover:text-primary mr-6 relative after:content-['/'] after:absolute after:right-[-12px] after:top-1/2 after:-translate-y-1/2 after:text-gray-600">Home</a>
+<span class="text-primary">About Us</span>
+</div>
+</div>
+</div>
+<!-- Hero Section -->
+<section class="relative h-[500px] overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img src="https://readdy.ai/api/search-image?query=diverse%2520team%2520of%2520robotics%2520engineers%2520and%2520scientists%2520in%2520a%2520modern%2520high-tech%2520laboratory%2520with%2520futuristic%2520equipment%252C%2520working%2520on%2520advanced%2520robots%2520and%2520drones%252C%2520blue%2520lighting%2520accents%2520throughout%2520the%2520space%252C%2520large%2520glass%2520windows%2520showing%2520city%2520skyline%252C%2520holographic%2520displays%2520with%2520data%2520visualizations%252C%2520clean%2520and%2520organized%2520workspace&width=1920&height=1000&seq=about-hero&orientation=landscape" alt="RoboTech Nexus Team" class="w-full h-full object-cover object-top">
+<div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent"></div>
+</div>
+<div class="container mx-auto px-6 h-full relative z-10 flex items-center">
+<div class="max-w-2xl">
+<h1 class="title-font text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white">Pioneering the Future of Robotics</h1>
+<p class="text-xl text-gray-300 mb-8">At RoboTech Nexus, we're dedicated to pushing the boundaries of what's possible in robotics and automation technology.</p>
+<a href="#company-overview" class="inline-flex items-center bg-primary text-gray-900 font-medium py-3 px-6 rounded-button hover:bg-opacity-80 transition-all whitespace-nowrap">
+Discover Our Story
+<i class="ri-arrow-right-line ml-2"></i>
+</a>
+</div>
+</div>
+</section>
+<!-- Company Overview -->
+<section id="company-overview" class="py-20 bg-gray-900">
+<div class="container mx-auto px-6">
+<div class="flex flex-col md:flex-row items-center gap-12">
+<div class="w-full md:w-1/2">
+<img src="https://readdy.ai/api/search-image?query=futuristic%2520robotics%2520laboratory%2520with%2520engineers%2520working%2520on%2520advanced%2520robotic%2520arms%2520and%2520drones%252C%2520holographic%2520displays%2520showing%2520technical%2520schematics%252C%2520clean%2520modern%2520workspace%2520with%2520blue%2520lighting%2520accents%252C%2520glass%2520walls%2520revealing%2520testing%2520areas%252C%2520high-tech%2520equipment%2520throughout%2520the%2520space&width=800&height=600&seq=about-overview&orientation=landscape" alt="RoboTech Nexus Laboratory" class="w-full h-auto rounded-lg shadow-2xl">
+</div>
+<div class="w-full md:w-1/2">
+<h2 class="title-font text-3xl font-bold mb-6">Our Mission & Vision</h2>
+<p class="text-gray-300 mb-6">Founded in 2015, RoboTech Nexus has been at the forefront of robotics innovation, combining cutting-edge research with practical applications that solve real-world problems. Our mission is to create intelligent robotic systems that enhance human capabilities and improve quality of life across industries.</p>
+<p class="text-gray-300 mb-8">We envision a future where humans and robots work seamlessly together, where automation enhances productivity while creating new opportunities for human creativity and ingenuity.</p>
+<h3 class="title-font text-xl font-semibold mb-4">Our Core Values</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mr-4 flex-shrink-0">
+<i class="ri-lightbulb-line text-primary ri-lg"></i>
+</div>
+<div>
+<h4 class="font-semibold mb-2">Innovation</h4>
+<p class="text-gray-400 text-sm">Constantly pushing boundaries and exploring new possibilities in robotics.</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mr-4 flex-shrink-0">
+<i class="ri-group-line text-primary ri-lg"></i>
+</div>
+<div>
+<h4 class="font-semibold mb-2">Collaboration</h4>
+<p class="text-gray-400 text-sm">Working together across disciplines to achieve breakthrough results.</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mr-4 flex-shrink-0">
+<i class="ri-shield-check-line text-primary ri-lg"></i>
+</div>
+<div>
+<h4 class="font-semibold mb-2">Integrity</h4>
+<p class="text-gray-400 text-sm">Maintaining the highest ethical standards in all our research and business practices.</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mr-4 flex-shrink-0">
+<i class="ri-global-line text-primary ri-lg"></i>
+</div>
+<div>
+<h4 class="font-semibold mb-2">Impact</h4>
+<p class="text-gray-400 text-sm">Creating technology that makes a positive difference in people's lives.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats Section -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+<div class="bg-gray-800 rounded-lg p-6 text-center">
+<div class="text-primary text-4xl font-bold mb-2 counter-value" data-target="10">0</div>
+<p class="text-gray-400">Years of Innovation</p>
+</div>
+<div class="bg-gray-800 rounded-lg p-6 text-center">
+<div class="text-primary text-4xl font-bold mb-2 counter-value" data-target="75">0</div>
+<p class="text-gray-400">Research Projects</p>
+</div>
+<div class="bg-gray-800 rounded-lg p-6 text-center">
+<div class="text-primary text-4xl font-bold mb-2 counter-value" data-target="120">0</div>
+<p class="text-gray-400">Team Members</p>
+</div>
+<div class="bg-gray-800 rounded-lg p-6 text-center">
+<div class="text-primary text-4xl font-bold mb-2 counter-value" data-target="35">0</div>
+<p class="text-gray-400">Global Partners</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Refined Journey Section -->
+<section class="journey-section">
+  <div class="container mx-auto px-6">
+    <div class="section-header">
+      <h2>Our Journey</h2>
+      <p>From a small research team to a global leader in robotics innovation, explore the key milestones that have shaped our company's history.</p>
+    </div>
+    
+    <div class="timeline-container">
+      <div class="timeline-line"></div>
+      <div class="timeline-items">
+        <!-- Item 1 -->
+        <div class="timeline-item" data-year="2015">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2015</div>
+            <h3 class="timeline-title">Company Founded</h3>
+            <p class="timeline-description">RoboTech Nexus was founded by Dr. Alexander Chen and Dr. Sophia Williams with a vision to revolutionize robotics technology. Initial funding secured from venture capital firms specializing in deep tech.</p>
+          </div>
+        </div>
+        
+        <!-- Item 2 -->
+        <div class="timeline-item" data-year="2017">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2017</div>
+            <h3 class="timeline-title">First Research Breakthrough</h3>
+            <p class="timeline-description">Development of our proprietary neural network architecture for robotic vision systems, achieving 95% accuracy in complex object recognition tasks, setting a new industry standard.</p>
+          </div>
+        </div>
+        
+        <!-- Item 3 -->
+        <div class="timeline-item" data-year="2019">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2019</div>
+            <h3 class="timeline-title">Global Expansion</h3>
+            <p class="timeline-description">Opened research facilities in Tokyo and Berlin, expanding our international presence and establishing partnerships with leading universities and research institutions worldwide.</p>
+          </div>
+        </div>
+        
+        <!-- Item 4 -->
+        <div class="timeline-item" data-year="2021">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2021</div>
+            <h3 class="timeline-title">Industry Recognition</h3>
+            <p class="timeline-description">Awarded the prestigious Global Robotics Innovation Award for our work on autonomous drone swarm coordination systems, beating competitors from 27 countries.</p>
+          </div>
+        </div>
+        
+        <!-- Item 5 -->
+        <div class="timeline-item" data-year="2023">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2023</div>
+            <h3 class="timeline-title">Major Acquisition</h3>
+            <p class="timeline-description">Acquired SoftGrip Technologies, integrating their revolutionary soft robotics technology into our product line and expanding our capabilities in delicate object manipulation.</p>
+          </div>
+        </div>
+        
+        <!-- Item 6 -->
+        <div class="timeline-item" data-year="2025">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2025</div>
+            <h3 class="timeline-title">Next Generation Launch</h3>
+            <p class="timeline-description">Launched our next-generation AI-powered manufacturing systems, now deployed in over 50 factories worldwide, increasing production efficiency by an average of 32%.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Leadership Team -->
+<section class="py-20 bg-gray-900">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="title-font text-3xl font-bold mb-4">Our Leadership Team</h2>
+<p class="text-gray-400 max-w-3xl mx-auto">Meet the visionaries and experts driving innovation at RoboTech Nexus, bringing decades of combined experience in robotics, AI, and engineering.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Team Member 1 -->
+<div class="team-card bg-gray-800 rounded-lg overflow-hidden">
+<div class="relative">
+<img src="./CAT1.png" alt="Dr. Alexander Chen" class="w-full h-64 object-cover object-top">
+<div class="overlay absolute inset-0 bg-primary"></div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-1">Mr. Laltu</h3>
+<p class="text-primary text-sm mb-4">Co-Founder & CEO</p>
+<p class="text-gray-400 text-sm mb-4">Ph.D. in Robotics from MIT with 15+ years of experience in AI and autonomous systems. Previously led research teams at Boston Dynamics.</p>
+<div class="social-links flex space-x-3">
+<a href="#" class="w-8 h-8 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-8 h-8 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-twitter-x-line"></i>
+</a>
+<a href="#" class="w-8 h-8 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-mail-line"></i>
+</a>
+</div>
+</div>
+</div>
+<!-- Team Member 2 -->
+<div class="team-card bg-gray-800 rounded-lg overflow-hidden">
+<div class="relative">
+<img src="./Tanvir.jpg" alt="Dr. Sophia Williams" class="w-full h-64 object-cover object-top">
+<div class="overlay absolute inset-0 bg-primary"></div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-1">MD Tanvir Hasan</h3>
+<p class="text-primary text-sm mb-4">Co-Founder & CTO</p>
+<p class="text-gray-400 text-sm mb-4">Ph.D. in Computer Science from Stanford. Pioneer in machine learning algorithms for robotics applications with 20+ published research papers.</p>
+<div class="social-links flex space-x-3">
+<a href="#" class="w-8 h-8 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-8 h-8 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-twitter-x-line"></i>
+</a>
+<a href="#" class="w-8 h-8 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-mail-line"></i>
+</a>
+</div>
+</div>
+</div>
+<!-- Team Member 3 -->
+<div class="team-card bg-gray-800 rounded-lg overflow-hidden">
+<div class="relative">
+<img src="./Rahat.jpg" alt="Dr. Michael Rodriguez" class="w-full h-64 object-cover object-top">
+<div class="overlay absolute inset-0 bg-primary"></div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-1">MD Najmus Sakib Khan Rahat</h3>
+<p class="text-primary text-sm mb-4">Chief Research Officer</p>
+<p class="text-gray-400 text-sm mb-4">Ph.D. in Mechanical Engineering from Caltech. Expert in robotic manipulation and industrial automation with 12 patents to his name.</p>
+<div class="social-links flex space-x-3">
+<a href="#" class="w-8 h-8 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-8 h-8 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-twitter-x-line"></i>
+</a>
+<a href="#" class="w-8 h-8 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-mail-line"></i>
+</a>
+</div>
+</div>
+</div>
+<!-- Team Member 4 -->
+<div class="team-card bg-gray-800 rounded-lg overflow-hidden">
+<div class="relative">
+<img src="./Hamim.jpg" alt="Dr. Priya Patel" class="w-full h-64 object-cover object-top">
+<div class="overlay absolute inset-0 bg-primary"></div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-1">Sadman Hamim</h3>
+<p class="text-primary text-sm mb-4">VP of Product Development</p>
+<p class="text-gray-400 text-sm mb-4">Ph.D. in Electrical Engineering from UC Berkeley. Specializes in integrating AI systems with hardware for commercial applications.</p>
+<div class="social-links flex space-x-3">
+<a href="#" class="w-8 h-8 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-8 h-8 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-twitter-x-line"></i>
+</a>
+<a href="#" class="w-8 h-8 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-mail-line"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center mt-12">
+<a href="#" class="inline-flex items-center text-primary hover:underline">
+View Full Team
+<i class="ri-arrow-right-line ml-2"></i>
+</a>
+</div>
+</div>
+</section>
+
+
+<!-- <canvas id="robotCanvas" width="120" height="120"></canvas>
+<div class="fixed bottom-6 right-6 z-[9999] robot-mascot">
+<div id="robotMascot" class="w-16 h-16 md:w-20 md:h-20 bg-gray-800 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-gray-700 transition-all">
+<i class="ri-robot-fill ri-2x text-primary"></i>
+</div>
+
+<div id="chatDialog" class="hidden absolute bottom-24 right-0 w-80 md:w-96 bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+<div class="p-4 bg-gray-700 flex justify-between items-center border-b border-gray-600">
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-3">
+<i class="ri-robot-fill text-primary"></i>
+</div>
+<h3 class="font-semibold">RoboTech Assistant</h3>
+</div>
+<div class="flex items-center gap-2">
+<button id="minimizeChat" class="w-8 h-8 flex items-center justify-center hover:bg-gray-600 rounded-full transition-all">
+<i class="ri-subtract-line"></i>
+</button>
+<button id="closeChat" class="w-8 h-8 flex items-center justify-center hover:bg-gray-600 rounded-full transition-all">
+<i class="ri-close-line"></i>
+</button>
+</div>
+</div>
+<div id="chatMessages" class="h-80 overflow-y-auto p-4 space-y-4">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-20 rounded-full flex-shrink-0">
+<i class="ri-robot-fill text-primary text-sm"></i>
+</div>
+<div class="bg-gray-700 rounded-lg p-3 text-sm max-w-[80%]">
+Hello! How can I help you with our research projects today?
+</div>
+</div>
+</div>
+<div class="p-4 bg-gray-700 border-t border-gray-600">
+<div class="flex flex-wrap gap-2 mb-3">
+<button class="quick-action-btn bg-gray-600 hover:bg-gray-500 text-sm px-3 py-1 rounded-full transition-all">Latest Research</button>
+<button class="quick-action-btn bg-gray-600 hover:bg-gray-500 text-sm px-3 py-1 rounded-full transition-all">AI Projects</button>
+<button class="quick-action-btn bg-gray-600 hover:bg-gray-500 text-sm px-3 py-1 rounded-full transition-all">Contact Team</button>
+</div>
+<div class="flex gap-2">
+<input id="chatInput" type="text" placeholder="Type your message..." class="flex-1 bg-gray-600 border-none rounded text-sm p-3">
+<button id="sendMessage" class="bg-primary text-gray-900 px-4 rounded hover:bg-opacity-80 transition-all">
+<i class="ri-send-plane-fill"></i>
+</button>
+</div>
+</div>
+</div>
+</div> -->
+
+<!-- Innovation Vision -->
+<section class="py-20 relative">
+<div class="absolute inset-0 z-0">
+<img src="https://readdy.ai/api/search-image?query=futuristic%2520robotics%2520laboratory%2520with%2520advanced%2520robots%2520being%2520developed%252C%2520holographic%2520displays%2520showing%2520technical%2520data%252C%2520researchers%2520working%2520on%2520cutting-edge%2520technology%252C%2520blue%2520lighting%2520throughout%2520the%2520space%252C%2520glass%2520walls%2520and%2520modern%2520architecture%252C%2520city%2520skyline%2520visible%2520through%2520large%2520windows&width=1920&height=1000&seq=vision-bg&orientation=landscape" alt="Future of Robotics" class="w-full h-full object-cover object-top">
+<div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent"></div>
+</div>
+<div class="container mx-auto px-6 relative z-10">
+<div class="max-w-2xl">
+<h2 class="title-font text-3xl font-bold mb-6">Our Vision for the Future</h2>
+<p class="text-gray-300 mb-8">At RoboTech Nexus, we're working towards a future where robotics and AI seamlessly integrate into everyday life, enhancing human capabilities and solving complex global challenges.</p>
+<div class="space-y-6 mb-10">
+<div class="bg-gray-800 bg-opacity-80 rounded-lg p-6">
+<h3 class="text-xl font-semibold mb-3 flex items-center">
+<span class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-3">
+<i class="ri-robot-line text-primary"></i>
+</span>
+Human-Robot Collaboration
+</h3>
+<p class="text-gray-400">Developing intuitive interfaces and adaptive AI systems that enable humans and robots to work together more effectively than either could alone.</p>
+</div>
+<div class="bg-gray-800 bg-opacity-80 rounded-lg p-6">
+<h3 class="text-xl font-semibold mb-3 flex items-center">
+<span class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-3">
+<i class="ri-earth-line text-primary"></i>
+</span>
+Sustainable Automation
+</h3>
+<p class="text-gray-400">Creating energy-efficient robotic systems that reduce environmental impact while improving productivity across industries from manufacturing to agriculture.</p>
+</div>
+<div class="bg-gray-800 bg-opacity-80 rounded-lg p-6">
+<h3 class="text-xl font-semibold mb-3 flex items-center">
+<span class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-3">
+<i class="ri-heart-pulse-line text-primary"></i>
+</span>
+Healthcare Revolution
+</h3>
+<p class="text-gray-400">Pioneering robotic solutions for healthcare, from surgical assistance to rehabilitation technology that improves patient outcomes and quality of life.</p>
+</div>
+</div>
+<a href="#" class="inline-flex items-center bg-primary text-gray-900 font-medium py-3 px-6 rounded-button hover:bg-opacity-80 transition-all whitespace-nowrap">
+Read Our Research Papers
+<i class="ri-external-link-line ml-2"></i>
+</a>
+</div>
+</div>
+</section>
+<!-- Testimonials & Partnerships -->
+<section class="py-20 bg-gray-800">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="title-font text-3xl font-bold mb-4">Testimonials & Partnerships</h2>
+<p class="text-gray-400 max-w-3xl mx-auto">Hear from our clients and partners about their experiences working with RoboTech Nexus technology.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+<!-- Testimonial 1 -->
+<div class="testimonial-card bg-gray-900 rounded-lg p-6 shadow-lg">
+<div class="flex items-center mb-4">
+<div class="text-primary text-4xl mr-2">
+<i class="ri-double-quotes-l"></i>
+</div>
+</div>
+<p class="text-gray-300 mb-6">RoboTech Nexus's automation solutions have transformed our manufacturing process. We've seen a 40% increase in productivity and significant reduction in errors since implementation.</p>
+<div class="flex items-center">
+<img src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520a%2520middle-aged%2520white%2520male%2520executive%2520in%2520business%2520attire%252C%2520neutral%2520background%252C%2520professional%2520lighting&width=60&height=60&seq=test1&orientation=squarish" alt="James Wilson" class="w-12 h-12 rounded-full object-cover mr-4">
+<div>
+<h4 class="font-semibold">James Wilson</h4>
+<p class="text-gray-400 text-sm">CTO, GlobalTech Manufacturing</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="testimonial-card bg-gray-900 rounded-lg p-6 shadow-lg">
+<div class="flex items-center mb-4">
+<div class="text-primary text-4xl mr-2">
+<i class="ri-double-quotes-l"></i>
+</div>
+</div>
+<p class="text-gray-300 mb-6">The drone swarm technology developed by RoboTech Nexus has revolutionized our environmental monitoring capabilities. We're now able to cover 5x more area with greater precision.</p>
+<div class="flex items-center">
+<img src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520a%2520middle-aged%2520latina%2520female%2520executive%2520in%2520business%2520attire%252C%2520neutral%2520background%252C%2520professional%2520lighting&width=60&height=60&seq=test2&orientation=squarish" alt="Dr. Elena Rodriguez" class="w-12 h-12 rounded-full object-cover mr-4">
+<div>
+<h4 class="font-semibold">Dr. Elena Rodriguez</h4>
+<p class="text-gray-400 text-sm">Director, EcoSystems Research</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="testimonial-card bg-gray-900 rounded-lg p-6 shadow-lg">
+<div class="flex items-center mb-4">
+<div class="text-primary text-4xl mr-2">
+<i class="ri-double-quotes-l"></i>
+</div>
+</div>
+<p class="text-gray-300 mb-6">Our partnership with RoboTech Nexus has accelerated our research capabilities tremendously. Their AI systems have helped us analyze data 10x faster than our previous methods.</p>
+<div class="flex items-center">
+<img src="https://readdy.ai/api/search-image?query=professional%2520headshot%2520of%2520an%2520asian%2520male%2520professor%2520in%2520his%252050s%2520with%2520glasses%252C%2520neutral%2520background%252C%2520professional%2520lighting&width=60&height=60&seq=test3&orientation=squarish" alt="Prof. Hiroshi Tanaka" class="w-12 h-12 rounded-full object-cover mr-4">
+<div>
+<h4 class="font-semibold">Prof. Hiroshi Tanaka</h4>
+<p class="text-gray-400 text-sm">Tokyo Institute of Technology</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Partners -->
+<h3 class="title-font text-2xl font-bold mb-8 text-center">Our Research Partners</h3>
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
+<div class="flex items-center justify-center">
+<div class="partner-logo flex flex-col items-center">
+<span class="w-16 h-16 flex items-center justify-center text-gray-400">
+<i class="ri-building-4-line ri-3x"></i>
+</span>
+<span class="text-gray-400 text-sm mt-2">MIT</span>
+</div>
+</div>
+<div class="flex items-center justify-center">
+<div class="partner-logo flex flex-col items-center">
+<span class="w-16 h-16 flex items-center justify-center text-gray-400">
+<i class="ri-building-2-line ri-3x"></i>
+</span>
+<span class="text-gray-400 text-sm mt-2">Stanford University</span>
+</div>
+</div>
+<div class="flex items-center justify-center">
+<div class="partner-logo flex flex-col items-center">
+<span class="w-16 h-16 flex items-center justify-center text-gray-400">
+<i class="ri-building-line ri-3x"></i>
+</span>
+<span class="text-gray-400 text-sm mt-2">Tokyo Tech</span>
+</div>
+</div>
+<div class="flex items-center justify-center">
+<div class="partner-logo flex flex-col items-center">
+<span class="w-16 h-16 flex items-center justify-center text-gray-400">
+<i class="ri-government-line ri-3x"></i>
+</span>
+<span class="text-gray-400 text-sm mt-2">Max Planck Institute</span>
+</div>
+</div>
+<div class="flex items-center justify-center">
+<div class="partner-logo flex flex-col items-center">
+<span class="w-16 h-16 flex items-center justify-center text-gray-400">
+<i class="ri-building-3-line ri-3x"></i>
+</span>
+<span class="text-gray-400 text-sm mt-2">ETH Zurich</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-20 bg-gray-900">
+<div class="container mx-auto px-6">
+<div class="flex flex-col lg:flex-row gap-12">
+<div class="w-full lg:w-1/2">
+<h2 class="title-font text-3xl font-bold mb-6">Get in Touch</h2>
+<p class="text-gray-300 mb-8">Interested in learning more about our research, partnering with us, or exploring career opportunities? We'd love to hear from you.</p>
+<div class="space-y-6 mb-8">
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mr-4 flex-shrink-0">
+<i class="ri-map-pin-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-semibold mb-1">Headquarters</h4>
+<p class="text-gray-400">123 Innovation Drive, Tech City, TC 54321, United States</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mr-4 flex-shrink-0">
+<i class="ri-mail-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-semibold mb-1">Email</h4>
+<p class="text-gray-400">info@robotechnexus.com</p>
+<p class="text-gray-400">careers@robotechnexus.com</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mr-4 flex-shrink-0">
+<i class="ri-phone-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-semibold mb-1">Phone</h4>
+<p class="text-gray-400">+1 (555) 123-4567</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 rounded-lg mr-4 flex-shrink-0">
+<i class="ri-time-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-semibold mb-1">Working Hours</h4>
+<p class="text-gray-400">Monday - Friday: 9:00 AM - 6:00 PM</p>
+<p class="text-gray-400">Saturday - Sunday: Closed</p>
+</div>
+</div>
+</div>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-twitter-x-line"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-instagram-line"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-youtube-fill"></i>
+</a>
+</div>
+</div>
+<div class="w-full lg:w-1/2">
+<div class="bg-gray-800 rounded-lg p-8">
+<h3 class="text-xl font-semibold mb-6">Send Us a Message</h3>
+<form>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div>
+<label for="name" class="block text-sm font-medium text-gray-400 mb-2">Your Name</label>
+<input type="text" id="name" class="search-input w-full py-3 px-4 rounded-button text-sm border-none" placeholder="John Doe">
+</div>
+<div>
+<label for="email" class="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
+<input type="email" id="email" class="search-input w-full py-3 px-4 rounded-button text-sm border-none" placeholder="john@example.com">
+</div>
+</div>
+<div class="mb-6">
+<label for="subject" class="block text-sm font-medium text-gray-400 mb-2">Subject</label>
+<input type="text" id="subject" class="search-input w-full py-3 px-4 rounded-button text-sm border-none" placeholder="How can we help you?">
+</div>
+<div class="mb-6">
+<label for="message" class="block text-sm font-medium text-gray-400 mb-2">Message</label>
+<textarea id="message" rows="5" class="search-input w-full py-3 px-4 rounded-button text-sm border-none" placeholder="Your message here..."></textarea>
+</div>
+<button type="submit" class="w-full bg-primary text-gray-900 font-medium py-3 px-6 rounded-button hover:bg-opacity-80 transition-all whitespace-nowrap">
+Send Message
+</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Map Section -->
+<section class="py-12 bg-gray-800">
+<div class="container mx-auto px-6">
+<div class="rounded-lg overflow-hidden h-[400px] relative">
+<img src="https://public.readdy.ai/gen_page/map_placeholder_1280x720.png" alt="Office Location Map" class="w-full h-full object-cover">
+</div>
+</div>
+</section>
+<!-- Newsletter Section -->
+<section class="py-16 bg-gray-900">
+<div class="container mx-auto px-6">
+<div class="max-w-4xl mx-auto bg-gray-800 rounded-lg p-8 md:p-12">
+<div class="text-center mb-8">
+<h2 class="title-font text-3xl font-bold mb-4">Stay Updated</h2>
+<p class="text-gray-400">Subscribe to our newsletter for the latest news, research updates, and insights from RoboTech Nexus.</p>
+</div>
+<form class="max-w-xl mx-auto">
+<div class="flex flex-col sm:flex-row gap-4">
+<input type="email" placeholder="Enter your email" class="search-input flex-1 py-3 px-4 rounded-button text-sm border-none">
+<button type="submit" class="bg-primary text-gray-900 font-medium py-3 px-6 rounded-button hover:bg-opacity-80 transition-all whitespace-nowrap">
+Subscribe
+</button>
+</div>
+</form>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-800 pt-16 pb-8" id="ft-color">
+  <div class="container mx-auto px-6">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
+  <div>
+  <a href="#" class="text-2xl font-orbitron flex items-center mb-6">
+    <span class="text-primary font-bold mr-1">Robo</span>
+    <span class="text-white">Horizon</span>
+    <!-- <span class="text-xs text-secondary ml-2 mt-1">Innovate • Build • Research</span> -->
+  </a>
+  <p class="text-gray-400 mb-6">Pioneering the future of robotics with cutting-edge technology and innovative research.</p>
+  <div class="flex space-x-4">
+  <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+  <i class="ri-twitter-x-line"></i>
+  </a>
+  <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+  <i class="ri-facebook-fill"></i>
+  </a>
+  <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+  <i class="ri-instagram-line"></i>
+  </a>
+  <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+  <i class="ri-linkedin-fill"></i>
+  </a>
+  </div>
+  </div>
+  <div>
+  <h3 class="text-lg font-semibold mb-6">Products</h3>
+  <ul class="space-y-3">
+  <li><a href="#" class="text-gray-400 hover:text-primary">Arduino</a></li>
+  <li><a href="#" class="text-gray-400 hover:text-primary">Sensors</a></li>
+  <li><a href="#" class="text-gray-400 hover:text-primary">Motors</a></li>
+  <li><a href="#" class="text-gray-400 hover:text-primary">Robotic Parts</a></li>
+  <li><a href="#" class="text-gray-400 hover:text-primary">Development Kits</a></li>
+  </ul>
+  </div>
+  <div>
+  <h3 class="text-lg font-semibold mb-6">Research</h3>
+  <ul class="space-y-3">
+  <li><a href="#" class="text-gray-400 hover:text-primary">AI & Machine Learning</a></li>
+  <li><a href="#" class="text-gray-400 hover:text-primary">Drone Technology</a></li>
+  <li><a href="#" class="text-gray-400 hover:text-primary">Automation Systems</a></li>
+  <li><a href="#" class="text-gray-400 hover:text-primary">Computer Vision</a></li>
+  <li><a href="#" class="text-gray-400 hover:text-primary">Publications</a></li>
+  </ul>
+  </div>
+  <div>
+  <h3 class="text-lg font-semibold mb-6">Contact</h3>
+  <ul class="space-y-3">
+  <li class="flex items-start">
+  <span class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-3">
+  <i class="ri-map-pin-line"></i>
+  </span>
+  <span class="text-gray-400">123 Innovation Drive, Tech City, TC 54321</span>
+  </li>
+  <li class="flex items-start">
+  <span class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-3">
+  <i class="ri-mail-line"></i>
+  </span>
+  <span class="text-gray-400">info@robotechnexus.com</span>
+  </li>
+  <li class="flex items-start">
+  <span class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-3">
+  <i class="ri-phone-line"></i>
+  </span>
+  <span class="text-gray-400">+1 (555) 123-4567</span>
+  </li>
+  </ul>
+  </div>
+  </div>
+  <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-700">
+  <div class="mb-4 md:mb-0">
+  <p class="text-gray-500 text-sm">© 2025 RoboTech Nexus. All rights reserved.</p>
+  </div>
+  <div class="flex items-center space-x-6">
+  <a href="#" class="text-gray-500 text-sm hover:text-gray-300">Privacy Policy</a>
+  <a href="#" class="text-gray-500 text-sm hover:text-gray-300">Terms of Service</a>
+  <a href="#" class="text-gray-500 text-sm hover:text-gray-300">Cookie Policy</a>
+  </div>
+  <div class="mt-4 md:mt-0 flex items-center space-x-4">
+  <span class="text-gray-500 text-sm">Payment Methods:</span>
+  <span class="w-8 h-8 flex items-center justify-center text-gray-400">
+  <i class="ri-visa-fill ri-lg"></i>
+  </span>
+  <span class="w-8 h-8 flex items-center justify-center text-gray-400">
+  <i class="ri-mastercard-fill ri-lg"></i>
+  </span>
+  <span class="w-8 h-8 flex items-center justify-center text-gray-400">
+  <i class="ri-paypal-fill ri-lg"></i>
+  </span>
+  </div>
+  </div>
+  </div>
+  </div>
+  </footer>
+  
+<!-- <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Counter Animation
+  const counters = document.querySelectorAll('.counter-value');
+  const speed = 200;
+  counters.forEach(counter => {
+    const target = parseInt(counter.getAttribute('data-target'));
+    const increment = target / speed;
+    let current = 0;
+    const updateCount = () => {
+      if (current < target) {
+        current += increment;
+        counter.textContent = Math.ceil(current);
+        setTimeout(updateCount, 1);
+      } else {
+        counter.textContent = target;
+      }
+    };
+    updateCount();
+  });
+  
+  // Intersection Observer for animations
+  const observerOptions = {
+    threshold: 0.1
+  };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fade-in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  
+  document.querySelectorAll('.team-card, .testimonial-card').forEach(item => {
+    observer.observe(item);
+  });
+  
+  // Journey Section Animations
+  // Animate section header on load
+  const sectionHeader = document.querySelector('.section-header');
+  setTimeout(() => {
+    sectionHeader.classList.add('animate-in');
+  }, 300);
+  
+  // Enhanced animation for timeline items
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  
+  // Function to check if an element is in viewport
+  function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.85 &&
+      rect.bottom >= 0
+    );
+  }
+  
+  // Function to handle animation on scroll
+  function handleScrollAnimation() {
+    timelineItems.forEach((item, index) => {
+      if (isElementInViewport(item)) {
+        // Add staggered delay based on index
+        setTimeout(() => {
+          item.classList.add('animate-in');
+        }, index * 150); // 150ms delay between each item
+      }
+    });
+  }
+  
+  // Initial check on load
+  setTimeout(handleScrollAnimation, 500);
+  
+  // Check on scroll with throttling for performance
+  let scrollTimeout;
+  window.addEventListener('scroll', function() {
+    if (!scrollTimeout) {
+      scrollTimeout = setTimeout(function() {
+        handleScrollAnimation();
+        scrollTimeout = null;
+      }, 50);
+    }
+  });
+  
+  // Add hover effects for timeline items
+  timelineItems.forEach(item => {
+    // Mouse enter effect
+    item.addEventListener('mouseenter', function() {
+      const dot = this.querySelector('.timeline-dot');
+      
+      // Enhance dot on hover
+      if (dot) {
+        dot.style.transform = 'translateY(-50%) scale(1.2)';
+        dot.style.boxShadow = '0 0 15px 5px rgba(0, 255, 255, 0.5)';
+        
+        // For purple dots
+        if (this.classList.contains('animate-in') && this.querySelector('.timeline-dot').style.backgroundColor === 'rgb(157, 78, 221)') {
+          dot.style.boxShadow = '0 0 15px 5px rgba(157, 78, 221, 0.5)';
+        }
+      }
+    });
+    
+    // Mouse leave effect
+    item.addEventListener('mouseleave', function() {
+      const dot = this.querySelector('.timeline-dot');
+      
+      // Reset dot
+      if (dot) {
+        dot.style.transform = 'translateY(-50%) scale(1)';
+        dot.style.boxShadow = '';
+      }
+    });
+  });
+  
+  // Optional: Add click interaction for mobile
+  timelineItems.forEach(item => {
+    item.addEventListener('click', function() {
+      // Toggle focus class for mobile interactions
+      timelineItems.forEach(i => {
+        if (i !== item) i.classList.remove('focused');
+      });
+      this.classList.toggle('focused');
+    });
+  });
+}); -->
+<!-- </script> -->
+ <script src="about.js"></script>
+ <script src="Research.js"></script>
+</body>
+</html>

@@ -1,0 +1,2033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robo Horizon - Innovate, Build, Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="shortcut icon" href="https://pbs.twimg.com/profile_images/1499265096006000640/ZhEnSTch_400x400.jpg" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#00FFFF',secondary:'#9D4EDD'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+.aspect-w-16 {
+  position: relative;
+  padding-bottom: 56.25%;
+}
+.aspect-h-9 {
+  position: relative;
+}
+.aspect-w-16 > * {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+body {
+font-family: 'Inter', sans-serif;
+background-color: #0F172A;
+color: #F1F5F9; /* Changed from #E2E8F0 to be darker */
+}
+.title-font {
+font-family: 'Orbitron', sans-serif;
+}
+.hero-container {
+background: linear-gradient(90deg, rgba(15, 23, 42, 0.7) 0%, rgba(15, 23, 42, 0.6) 50%, rgba(15, 23, 42, 0.4) 100%);
+}
+.nav-glass {
+backdrop-filter: blur(10px);
+background-color: rgba(15, 23, 42, 0.3);
+}
+.nav-glass a {
+color: #F1F5F9; /* Darker text for navigation */
+}
+.dropdown {
+display: none;
+animation: fadeIn 0.3s ease;
+}
+.dropdown-trigger:hover .dropdown {
+display: block;
+}
+.glow-btn {
+position: relative;
+overflow: hidden;
+transition: all 0.3s ease;
+color: #E2E8F0; /* Darker text color for better readability */
+}
+.glow-btn:hover {
+transform: translateY(-3px);
+color: #0F172A; /* Darker text on hover */
+}
+.glow-btn::before {
+content: '';
+position: absolute;
+top: -2px;
+left: -2px;
+right: -2px;
+bottom: -2px;
+z-index: -1;
+background: linear-gradient(45deg, #00FFFF, #9D4EDD, #00FFFF);
+background-size: 400%;
+border-radius: 10px;
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+.glow-btn:hover::before {
+opacity: 1;
+animation: glowing 20s linear infinite;
+}
+.glow-btn::after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+transform: translateX(-100%);
+}
+.glow-btn:hover::after {
+animation: sweep 0.6s ease;
+}
+.glow-btn-cyan::before {
+background: linear-gradient(45deg, #00FFFF, #0891B2, #00FFFF);
+}
+.glow-btn-cyan {
+color: #0F172A; /* Almost black text for cyan buttons */
+}
+.glow-btn-cyan:hover {
+background: rgba(0, 255, 255, 0.1);
+box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2);
+}
+.glow-btn-purple::before {
+background: linear-gradient(45deg, #9D4EDD, #7E22CE, #9D4EDD);
+}
+.glow-btn-purple {
+color: #1E293B; /* Dark slate text for purple buttons */
+}
+.glow-btn-purple:hover {
+background: rgba(157, 78, 221, 0.1);
+box-shadow: 0 10px 20px rgba(157, 78, 221, 0.2);
+}
+@keyframes glowing {
+0% { background-position: 0 0; }
+50% { background-position: 400% 0; }
+100% { background-position: 0 0; }
+}
+@keyframes sweep {
+0% { transform: translateX(-100%); }
+100% { transform: translateX(100%); }
+}
+.product-card {
+perspective: 1000px;
+transition: transform 0.3s ease;
+}
+.product-card:hover {
+transform: translateY(-10px);
+}
+.card-inner {
+position: relative;
+width: 100%;
+height: 100%;
+text-align: center;
+transition: transform 0.6s;
+transform-style: preserve-3d;
+}
+.product-card:hover .card-inner {
+transform: rotateY(180deg);
+}
+.card-front, .card-back {
+position: absolute;
+width: 100%;
+height: 100%;
+backface-visibility: hidden;
+border-radius: 8px;
+overflow: hidden;
+}
+.card-back {
+transform: rotateY(180deg);
+background: linear-gradient(145deg, #1E293B, #0F172A);
+}
+.timeline-item {
+opacity: 0;
+transform: translateY(20px);
+transition: all 0.6s ease;
+}
+.timeline-item.visible {
+opacity: 1;
+transform: translateY(0);
+}
+.counter-value {
+display: inline-block;
+}
+input[type="range"] {
+/* -webkit-appearance: none; */
+width: 100%;
+height: 4px;
+background: #334155;
+border-radius: 5px;
+outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+-webkit-appearance: none;
+width: 16px;
+height: 16px;
+background: #00FFFF;
+border-radius: 50%;
+cursor: pointer;
+}
+.custom-checkbox {
+position: relative;
+padding-left: 30px;
+cursor: pointer;
+user-select: none;
+}
+.custom-checkbox input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+height: 0;
+width: 0;
+}
+.checkmark {
+position: absolute;
+top: 0;
+left: 0;
+height: 20px;
+width: 20px;
+background-color: #1E293B;
+border-radius: 4px;
+}
+.custom-checkbox:hover input ~ .checkmark {
+background-color: #334155;
+}
+.custom-checkbox input:checked ~ .checkmark {
+background-color: #00FFFF;
+}
+.checkmark:after {
+content: "";
+position: absolute;
+display: none;
+}
+.custom-checkbox input:checked ~ .checkmark:after {
+display: block;
+}
+.custom-checkbox .checkmark:after {
+left: 7px;
+top: 3px;
+width: 6px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.rotating-text {
+position: relative;
+height: 50px;
+overflow: hidden;
+}
+.rotating-text-item {
+position: absolute;
+opacity: 0;
+animation: rotateText 9s linear infinite 0s;
+width: 100%;
+text-align: center;
+}
+.rotating-text-item:nth-child(2) {
+animation-delay: 3s;
+}
+.rotating-text-item:nth-child(3) {
+animation-delay: 6s;
+}
+@keyframes rotateText {
+0% { opacity: 0; transform: translateY(10px); }
+2% { opacity: 0; transform: translateY(10px); }
+8% { opacity: 1; transform: translateY(0); }
+25% { opacity: 1; transform: translateY(0); }
+30% { opacity: 0; transform: translateY(-10px); }
+80% { opacity: 0; }
+100% { opacity: 0; }
+}
+.particles {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+overflow: hidden;
+z-index: 0;
+}
+.particle {
+position: absolute;
+display: block;
+pointer-events: none;
+opacity: 0.5;
+animation: float 15s linear infinite;
+}
+@keyframes float {
+0% {
+transform: translateY(0) rotate(0deg);
+opacity: 0.5;
+}
+100% {
+transform: translateY(-1000px) rotate(720deg);
+opacity: 0;
+}
+}
+.switch {
+position: relative;
+display: inline-block;
+width: 50px;
+height: 24px;
+}
+.switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #1E293B;
+transition: .4s;
+border-radius: 34px;
+}
+.slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .slider {
+background-color: #00FFFF;
+}
+input:checked + .slider:before {
+transform: translateX(26px);
+}
+.search-input {
+background-color: rgba(30, 41, 59, 0.8);
+border: 1px solid #334155;
+color: white;
+transition: all 0.3s ease;
+}
+.search-input:focus {
+border-color: #00FFFF;
+box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.2);
+}
+.tab-button {
+position: relative;
+transition: all 0.3s ease;
+}
+.tab-button::after {
+content: '';
+position: absolute;
+bottom: -2px;
+left: 50%;
+width: 0;
+height: 2px;
+background-color: #00FFFF;
+transition: all 0.3s ease;
+transform: translateX(-50%);
+}
+.tab-button.active::after {
+width: 80%;
+}
+.tab-button.active {
+color: #00FFFF;
+}
+.robot-mascot {
+animation: float-mascot 3s ease-in-out infinite;
+}
+@keyframes float-mascot {
+0% { transform: translateY(0px); }
+50% { transform: translateY(-10px); }
+100% { transform: translateY(0px); }
+}
+.add-to-cart-btn {
+position: relative;
+overflow: hidden;
+color: #0F172A; /* Darker text for cart buttons */
+}
+.add-to-cart-btn::after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 255, 255, 0.2);
+transform: translateX(-100%);
+transition: transform 0.3s ease;
+}
+.add-to-cart-btn:hover::after {
+transform: translateX(0);
+}
+.text-gray-300 {
+color: #E2E8F0; /* Changed from a lighter gray */
+}
+.text-gray-400 {
+color: #CBD5E1; /* Changed from a lighter gray */
+}
+h1, h2, h3, h4, h5, h6 {
+color: #F8FAFC; /* Ensure headings are prominently visible */
+}
+footer {
+color: #E2E8F0; /* Darker text in footer */
+}
+footer .text-gray-400 {
+color: #CBD5E1; /* Darker text for footer links */
+}
+@keyframes float-up {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+@keyframes glow {
+  0% { box-shadow: 0 0 5px rgba(0, 255, 255, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.8); }
+  100% { box-shadow: 0 0 5px rgba(0, 255, 255, 0.5); }
+}
+@keyframes eyePulse {
+  0% { r: 3; fill: rgba(0, 255, 255, 0.7); }
+  50% { r: 4; fill: rgba(0, 255, 255, 1); }
+  100% { r: 3; fill: rgba(0, 255, 255, 0.7); }
+}
+@keyframes rotateCog {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.animate-float-up {
+  animation: float-up 0.8s ease forwards;
+}
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+.animate-glow {
+  animation: glow 2s infinite;
+}
+.robot-eye {
+  animation: eyePulse 2s infinite;
+}
+.rotating-cog {
+  transform-origin: center;
+  animation: rotateCog 10s linear infinite;
+}
+.rotating-cog-reverse {
+  transform-origin: center;
+  animation: rotateCog 8s linear infinite reverse;
+}
+.transition-all {
+  transition: all 0.3s ease;
+}
+.product-card:hover .card-inner {
+  transform: rotateY(180deg);
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.glow-btn:hover {
+  transform: translateY(-3px);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: #0F172A;
+}
+
+/* Update the logo in the navigation with a more futuristic AI-focused design */
+.text-2xl.font-Orbitron {
+  color: #00FFFF;
+}
+
+.text-2xl.font-Orbitron svg {
+  fill: #00FFFF;
+}
+
+.text-2xl.font-Orbitron svg circle {
+  fill: url(#ai-gradient);
+  stroke: #9D4EDD;
+  stroke-width: 1.5;
+}
+
+.text-2xl.font-Orbitron svg circle.neural-node {
+  fill: #00FFFF;
+  stroke: none;
+  stroke-width: 2;
+  animation-delay: 0.1s, 0.2s, 0.3s, 0.4s, 0.5s, 0.6s;
+  animation-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.text-2xl.font-Orbitron svg path.neural-connection {
+  stroke: #9D4EDD;
+  stroke-width: 1;
+  fill: none;
+  stroke-dasharray: 1 1;
+  animation: neuralPulse 8s infinite linear;
+}
+
+.text-2xl.font-Orbitron svg path.neural-pulse {
+  stroke: #00FFFF;
+  stroke-width: 0.5;
+  fill: none;
+  stroke-dasharray: 1 2;
+  animation: neuralPulse 4s infinite linear;
+  animation-delay: 0.3s;
+}
+
+.text-2xl.font-Orbitron svg circle.ai-eye {
+  fill: url(#eye-gradient);
+  stroke: #9D4EDD;
+  stroke-width: 12;
+  animation: eyePulsate 4s infinite ease-in-out;
+}
+
+.text-2xl.font-Orbitron svg circle.ai-pupil {
+  fill: #0F172A;
+  stroke: #9D4EDD;
+  stroke-width: 6;
+}
+
+.text-2xl.font-Orbitron svg circle.ai-core-pulse {
+  fill: rgba(0, 255, 255, 0.8);
+  stroke: #00FFFF;
+  stroke-width: 2;
+  animation: corePulse 2s infinite;
+}
+
+.text-2xl.font-Orbitron svg path.binary-ring {
+  stroke: #00FFFF;
+  stroke-width: 0.5;
+  fill: none;
+  stroke-dasharray: 1 2;
+  animation: binaryRotate 10s infinite linear;
+}
+
+.text-2xl.font-Orbitron svg text.binary-code {
+  fill: #00FFFF;
+  font-size: 3;
+  animation: textMove 20s infinite linear;
+}
+
+.text-2xl.font-Orbitron svg path.circuit-line {
+  stroke: #9D4EDD;
+  stroke-width: 0.75;
+  fill: none;
+  stroke-dasharray: 1 3;
+  animation: neuralPulse 6s infinite linear;
+}
+
+/* Also update the logo in the footer */
+.text-2xl.font-Orbitron {
+  color: #00FFFF;
+}
+
+.text-2xl.font-Orbitron svg {
+  fill: #00FFFF;
+}
+
+.text-2xl.font-Orbitron svg circle {
+  fill: url(#ai-gradient-footer);
+  stroke: #9D4EDD;
+  stroke-width: 1.5;
+}
+
+.text-2xl.font-Orbitron svg circle.neural-node {
+  fill: #00FFFF;
+  stroke: none;
+  stroke-width: 2;
+  animation-delay: 0.1s, 0.2s, 0.3s, 0.4s, 0.5s, 0.6s;
+  animation-duration: 0.5s, 0.5s, 0.5s, 0.5s, 0.5s, 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.text-2xl.font-Orbitron svg path.neural-connection {
+  stroke: #9D4EDD;
+  stroke-width: 1;
+  fill: none;
+  stroke-dasharray: 1 1;
+  animation: neuralPulse 8s infinite linear;
+}
+
+.text-2xl.font-Orbitron svg path.neural-pulse {
+  stroke: #00FFFF;
+  stroke-width: 0.5;
+  fill: none;
+  stroke-dasharray: 1 2;
+  animation: neuralPulse 4s infinite linear;
+  animation-delay: 0.3s;
+}
+
+.text-2xl.font-Orbitron svg circle.ai-eye {
+  fill: url(#eye-gradient-footer);
+  stroke: #9D4EDD;
+  stroke-width: 12;
+  animation: eyePulsate 4s infinite ease-in-out;
+}
+
+.text-2xl.font-Orbitron svg circle.ai-pupil {
+  fill: #0F172A;
+  stroke: #9D4EDD;
+  stroke-width: 6;
+}
+
+.text-2xl.font-Orbitron svg circle.ai-core-pulse {
+  fill: rgba(0, 255, 255, 0.8);
+  stroke: #00FFFF;
+  stroke-width: 2;
+  animation: corePulse 2s infinite;
+}
+
+.text-2xl.font-Orbitron svg path.binary-ring {
+  stroke: #00FFFF;
+  stroke-width: 0.5;
+  fill: none;
+  stroke-dasharray: 1 2;
+  animation: binaryRotate 10s infinite linear;
+}
+
+.text-2xl.font-Orbitron svg text.binary-code {
+  fill: #00FFFF;
+  font-size: 3;
+  animation: textMove 20s infinite linear;
+}
+
+.text-2xl.font-Orbitron svg path.circuit-line {
+  stroke: #9D4EDD;
+  stroke-width: 0.75;
+  fill: none;
+  stroke-dasharray: 1 3;
+  animation: neuralPulse 6s infinite linear;
+}
+
+/* Add new animation styles for the AI logo */
+@keyframes neuralPulse {
+  0% { opacity: 0.3; stroke-dashoffset: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; stroke-dashoffset: 10; }
+}
+
+@keyframes nodeFlash {
+  0% { opacity: 0.5; r: 1.5; }
+  50% { opacity: 1; r: 2.5; }
+  100% { opacity: 0.5; r: 1.5; }
+}
+
+@keyframes eyePulsate {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+@keyframes corePulse {
+  0% { r: 1.5; fill: rgba(0, 255, 255, 0.8); }
+  50% { r: 2.5; fill: rgba(0, 255, 255, 1); }
+  100% { r: 1.5; fill: rgba(0, 255, 255, 0.8); }
+}
+
+@keyframes binaryRotate {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 30; }
+}
+
+@keyframes textMove {
+  0% { startOffset: 0%; }
+  100% { startOffset: 100%; }
+}
+
+.neural-node {
+  animation: nodeFlash 3s infinite;
+}
+
+.neural-pulse {
+  animation: neuralPulse 4s infinite linear;
+}
+
+.ai-eye {
+  animation: eyePulsate 4s infinite ease-in-out;
+}
+
+.ai-core-pulse {
+  animation: corePulse 2s infinite;
+}
+
+.binary-ring {
+  animation: binaryRotate 10s infinite linear;
+}
+
+.binary-code {
+  animation: textMove 20s infinite linear;
+}
+
+.circuit-line {
+  animation: neuralPulse 6s infinite linear;
+}
+
+.neural-connection {
+  stroke-dasharray: 1 1;
+  animation: neuralPulse 8s infinite linear;
+}
+</style>
+
+<!-- Adding Loading Animation Styles -->
+<style>
+/* Loading Animation Styles */
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0F172A;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+.loading-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-logo {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 2rem;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 3px solid transparent;
+  border-top-color: #00FFFF;
+  border-left-color: #9D4EDD;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  position: relative;
+}
+
+.loading-spinner:before, .loading-spinner:after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+}
+
+.loading-spinner:before {
+  top: -9px;
+  left: -9px;
+  right: -9px;
+  bottom: -9px;
+  border: 3px solid transparent;
+  border-top-color: #00FFFF;
+  border-bottom-color: #9D4EDD;
+  animation: spin 1.5s linear infinite reverse;
+}
+
+.loading-spinner:after {
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  border: 3px solid transparent;
+  border-right-color: #00FFFF;
+  border-bottom-color: #9D4EDD;
+  animation: spin 1.2s linear infinite;
+}
+
+.loading-progress {
+  height: 2px;
+  width: 200px;
+  background-color: rgba(157, 78, 221, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.loading-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #9D4EDD, #00FFFF);
+  animation: progress 3s ease-in-out forwards;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+}
+
+.loading-text {
+  margin-top: 1.5rem;
+  color: #00FFFF;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  opacity: 0.8;
+}
+
+.loading-text span {
+  display: inline-block;
+  animation: textPulse 1.5s infinite;
+}
+
+.loading-text span:nth-child(1) { animation-delay: 0.0s; }
+.loading-text span:nth-child(2) { animation-delay: 0.1s; }
+.loading-text span:nth-child(3) { animation-delay: 0.2s; }
+.loading-text span:nth-child(4) { animation-delay: 0.3s; }
+.loading-text span:nth-child(5) { animation-delay: 0.4s; }
+.loading-text span:nth-child(6) { animation-delay: 0.5s; }
+.loading-text span:nth-child(7) { animation-delay: 0.6s; }
+.loading-text span:nth-child(8) { animation-delay: 0.7s; }
+.loading-text span:nth-child(9) { animation-delay: 0.8s; }
+.loading-text span:nth-child(10) { animation-delay: 0.9s; }
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.7; }
+}
+
+@keyframes progress {
+  0% { width: 0%; }
+  20% { width: 20%; }
+  40% { width: 40%; }
+  60% { width: 60%; }
+  80% { width: 80%; }
+  100% { width: 100%; }
+}
+
+@keyframes textPulse {
+  0% { opacity: 0.2; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-2px); }
+  100% { opacity: 0.2; transform: translateY(0); }
+}
+
+.glitch-effect {
+  position: relative;
+  animation: glitch 3s infinite;
+}
+
+.glitch-effect:before, .glitch-effect:after {
+  content: 'ROBOTECH';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.glitch-effect:before {
+  color: #00FFFF;
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch-effect:after {
+  color: #9D4EDD;
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch {
+  0%, 100% { opacity: 1; }
+  7% { opacity: 0.9; }
+  10% { opacity: 1; }
+  27% { opacity: 1; }
+  30% { opacity: 0.9; }
+  35% { opacity: 1; }
+  52% { opacity: 1; }
+  55% { opacity: 0.9; }
+  60% { opacity: 1; }
+}
+
+@keyframes glitch-anim-1 {
+  0% { transform: translate(0, 0); clip-path: inset(0% 0% 95% 0%); }
+  10% { clip-path: inset(25% 0% 40% 0%); }
+  20% { clip-path: inset(60% 0% 5% 0%); }
+  30% { clip-path: inset(40% 0% 45% 0%); }
+  40% { clip-path: inset(10% 0% 70% 0%); }
+  50% { clip-path: inset(70% 0% 10% 0%); }
+  60% { clip-path: inset(30% 0% 55% 0%); }
+  70% { clip-path: inset(5% 0% 80% 0%); }
+  80% { clip-path: inset(80% 0% 5% 0%); }
+  90% { clip-path: inset(0% 0% 95% 0%); }
+  100% { transform: translate(3px, -6px); clip-path: inset(95% 0% 0% 0%); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { transform: translate(0, 0); clip-path: inset(0% 0% 95% 0%); }
+  10% { clip-path: inset(15% 0% 70% 0%); }
+  20% { clip-path: inset(70% 0% 15% 0%); }
+  30% { clip-path: inset(50% 0% 25% 0%); }
+  40% { clip-path: inset(20% 0% 60% 0%); }
+  50% { clip-path: inset(60% 0% 20% 0%); }
+  60% { clip-path: inset(40% 0% 45% 0%); }
+  70% { clip-path: inset(15% 0% 65% 0%); }
+  80% { clip-path: inset(65% 0% 15% 0%); }
+  90% { clip-path: inset(0% 0% 85% 0%); }
+  100% { transform: translate(-3px, 6px); clip-path: inset(85% 0% 0% 0%); }
+}
+#ft-color {
+  background-color: #00000083;
+}
+/* .link-color > a:hover{
+  color: #00FFFF;
+
+} */
+</style>
+</head>
+<body>
+<!-- Loading Screen -->
+<div id="loading-screen">
+  <div class="loading-spinner"></div>
+  <div class="loading-progress">
+    <div class="loading-progress-bar"></div>
+  </div>
+  <div class="loading-text">
+    <span>I</span>
+    <span>N</span>
+    <span>I</span>
+    <span>T</span>
+    <span>I</span>
+    <span>A</span>
+    <span>L</span>
+    <span>I</span>
+    <span>Z</span>
+    <span>E</span>
+  </div>
+  <div class="glitch-effect loading-title" style="margin-top: 1rem; font-size: 1.2rem; font-weight: bold; color: white; font-family: 'Orbitron', sans-serif;">ROBO HORIZON</div>
+</div>
+
+<!-- Navigation -->
+<nav class="nav-glass fixed top-0 left-0 right-0 z-50 py-4">
+  <div class="container mx-auto px-6 flex items-center justify-between">
+  <a href="index.html" class="text-2xl font-orbitron flex items-center">
+    <span class="text-primary font-bold mr-1">Robo</span>
+    <span class="text-white">Horizon</span>
+    <!-- <span class="text-xs text-secondary ml-2 mt-1">Innovate • Build • Research</span> -->
+  </a>
+  <div class="hidden md:flex items-center space-x-8">
+  <div class="dropdown-trigger relative group">
+  <button class="text-gray-300 hover:text-primary flex items-center">
+  <a href="Product.html" class="text-gray-300 hover:text-primary">
+  Products
+  </a>
+  <span class="w-4 h-4 flex items-center justify-center ml-1">
+  <!-- <i class="ri-arrow-down-s-line"></i> -->
+  </span>
+  </button>
+  <div class="dropdown absolute top-full left-0 mt-2 w-48 bg-gray-800 rounded shadow-lg z-10">
+  <!-- <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Arduino</a>
+  <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Sensors</a>
+  <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Motors</a>
+  <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Robotic Parts</a> -->
+  </div>
+  </div>
+  <div class="dropdown-trigger relative group">
+  <button class="text-gray-300 hover:text-primary flex items-center">
+  <a href="Research.html" class="text-gray-300 hover:text-primary">Research</a>
+  <span class="w-4 h-4 flex items-center justify-center ml-1">
+  <!-- <i class="ri-arrow-down-s-line"></i> -->
+  </span>
+  </button>
+  <div class="dropdown absolute top-full left-0 mt-2 w-48 bg-gray-800 rounded shadow-lg z-10">
+  <!-- <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">AI</a>
+  <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Drones</a>
+  <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-700">Automation</a> -->
+  </div>
+  </div>
+  <a href="./About.html" class="text-gray-300 hover:text-primary">About</a>
+  <a href="contact.html" class="text-gray-300 hover:text-primary">Contact</a>
+  <a href="Cyberlink.html" class="text-gray-300 hover:text-primary">Robo-Canvas</a> <!-- New Cyberlink Page -->
+</div>
+  <div class="flex items-center space-x-4">
+  <div class="relative">
+  <input type="text" placeholder="Search..." class="search-input py-2 pl-8 pr-4 rounded-full text-sm w-40 md:w-60">
+  <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 flex items-center justify-center">
+  <i class="ri-search-line"></i>
+  </span>
+  </div>
+  <div class="relative">
+  <button class="text-gray-300 hover:text-primary w-10 h-10 flex items-center justify-center">
+  <i class="ri-shopping-cart-line ri-lg"></i>
+  </button>
+  <span class="absolute -top-1 -right-1 bg-primary text-gray-900 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">3</span>
+  </div>
+  <button class="md:hidden text-gray-300 hover:text-primary w-10 h-10 flex items-center justify-center">
+  <i class="ri-menu-line ri-lg"></i>
+  </button>
+  </div>
+  </div>
+  </nav>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center overflow-hidden">
+<div class="absolute inset-0 w-full h-full z-0">
+    <video autoplay muted loop class="object-cover w-full h-full">
+        <source src="video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+<div class="particles">
+<!-- Particles will be added by JavaScript -->
+</div>
+<div class="hero-container w-full h-full absolute top-0 left-0 z-10"></div>
+<div class="container mx-auto px-6 py-24 pt-32 z-20 relative">
+<div class="flex flex-col md:flex-row items-center">
+<div class="w-full md:w-1/2 text-center md:text-left mb-12 md:mb-0">
+<h1 class="title-font text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white animate-float-up" style="animation-delay: 0.2s;">
+<span class="text-primary">Robo</span> Horizon
+</h1>
+<div class="rotating-text mb-8">
+<div class="rotating-text-item title-font text-2xl md:text-3xl font-medium">Innovate</div>
+<div class="rotating-text-item title-font text-2xl md:text-3xl font-medium">Build</div>
+<div class="rotating-text-item title-font text-2xl md:text-3xl font-medium">Research</div>
+</div>
+<p class="text-lg md:text-xl mb-10 max-w-lg mx-auto md:mx-0 animate-float-up" style="animation-delay: 0.4s;" >
+Pioneering the future of robotics with cutting-edge technology, innovative research, and premium components for your next breakthrough project.
+</p>
+<div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 justify-center md:justify-start animate-float-up" style="animation-delay: 0.6s;">
+<button class="glow-btn glow-btn-cyan bg-gray-900 text-primary font-medium py-3 px-8 rounded-button whitespace-nowrap animate-glow">
+Shop Now
+</button>
+<button class="glow-btn glow-btn-purple bg-gray-900 text-secondary font-medium py-3 px-8 rounded-button whitespace-nowrap">
+Explore Research
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Counter Section -->
+<section class="py-16 bg-gray-900">
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-gray-800 rounded-lg p-8 text-center transform transition-all duration-500 hover:scale-105 animate-float-up" style="animation-delay: 0.3s;">
+<div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-gray-700 rounded-full">
+<i class="ri-shopping-bag-line ri-2x text-primary"></i>
+</div>
+<h3 class="counter-value text-4xl font-bold mb-2 text-white" style="font-family: 'Orbitron', sans-serif;" data-target="12500">0</h3>
+<p class="text-gray-400" style="font-family: 'Orbitron', sans-serif;">Products Sold</p>
+</div>
+<div class="bg-gray-800 rounded-lg p-8 text-center transform transition-transform hover:scale-105">
+<div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-gray-700 rounded-full">
+<i class="ri-flask-line ri-2x text-primary"></i>
+</div>
+<h3 class="counter-value text-4xl font-bold mb-2 text-white" data-target="87" style="font-family: 'Orbitron', sans-serif;">0</h3>
+<p class="text-gray-400" style="font-family: 'Orbitron', sans-serif;">Research Projects</p>
+</div>
+<div class="bg-gray-800 rounded-lg p-8 text-center transform transition-transform hover:scale-105">
+<div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center bg-gray-700 rounded-full">
+<i class="ri-user-line ri-2x text-primary"></i>
+</div>
+<h3 class="counter-value text-4xl font-bold mb-2 text-white" data-target="5280" style="font-family: 'Orbitron', sans-serif;">0</h3>
+<p class="text-gray-400" style="font-family: 'Orbitron', sans-serif;">Active Users</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Products Section -->
+<section class="py-20">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="title-font text-3xl md:text-4xl font-bold mb-4">Featured Products</h2>
+<p class="text-gray-400 max-w-2xl mx-auto">Discover our premium selection of robotics components and kits designed for innovation and reliability.</p>
+</div>
+<div class="flex flex-col md:flex-row">
+<!-- Filter Sidebar -->
+<div class="w-full md:w-1/4 mb-8 md:mb-0 md:pr-8">
+<div class="bg-gray-800 rounded-lg p-6">
+<h3 class="text-xl font-semibold mb-6">Filters</h3>
+<div class="mb-8">
+<h4 class="text-lg font-medium mb-4">Price Range</h4>
+<input type="range" min="0" max="1000" value="500" class="mb-2">
+<div class="flex justify-between text-sm text-gray-400">
+<span>$0</span>
+<span>$1000</span>
+</div>
+</div>
+<div class="mb-8">
+<h4 class="text-lg font-medium mb-4">Categories</h4>
+<div class="space-y-3">
+<label class="custom-checkbox block text-gray-300">
+Arduino
+<input type="checkbox" checked>
+<span class="checkmark"></span>
+</label>
+<label class="custom-checkbox block text-gray-300">
+Sensors
+<input type="checkbox">
+<span class="checkmark"></span>
+</label>
+<label class="custom-checkbox block text-gray-300">
+Motors
+<input type="checkbox">
+<span class="checkmark"></span>
+</label>
+<label class="custom-checkbox block text-gray-300">
+Robotic Parts
+<input type="checkbox">
+<span class="checkmark"></span>
+</label>
+</div>
+</div>
+<div class="mb-8">
+<h4 class="text-lg font-medium mb-4">Availability</h4>
+<label class="switch">
+<input type="checkbox" checked>
+<span class="slider"></span>
+</label>
+<span class="ml-2 text-gray-300">In Stock Only</span>
+</div>
+<button class="w-full bg-primary text-gray-900 font-medium py-2 px-4 rounded-button hover:bg-opacity-80 transition-all whitespace-nowrap">
+Apply Filters
+</button>
+</div>
+</div>
+<!-- Product Grid -->
+<div class="w-full md:w-3/4">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Product Card 1 -->
+<div class="product-card h-96 animate-float-up" style="animation-delay: 0.3s;">
+<div class="card-inner h-full">
+<div class="card-front bg-gray-800 p-4 flex flex-col h-full">
+<div class="h-48 mb-4 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Arduino%2520Mega%25202560%2520board%2520with%2520blue%2520circuit%2520board%2520and%2520multiple%2520pins%252C%2520professional%2520product%2520photography%2520on%2520dark%2520background%2520with%2520subtle%2520blue%2520lighting%252C%2520high%2520resolution%252C%2520detailed%2520electronic%2520components&width=400&height=300&seq=prod1&orientation=landscape" alt="Arduino Mega 2560" class="w-full h-full object-cover object-top rounded">
+</div>
+<h3 class="text-xl font-semibold mb-2">Arduino Mega 2560</h3>
+<div class="flex justify-between items-center mt-auto">
+<span class="text-primary font-bold">$45.99</span>
+<span class="bg-green-900 text-green-300 text-xs px-2 py-1 rounded">In Stock</span>
+</div>
+</div>
+<div class="card-back p-4 flex flex-col h-full">
+<h3 class="text-xl font-semibold mb-2">Arduino Mega 2560</h3>
+<p class="text-gray-400 text-sm mb-4">The Arduino Mega 2560 is a microcontroller board based on the ATmega2560. It has 54 digital input/output pins, 16 analog inputs, and a larger memory.</p>
+<div class="mb-4">
+<h4 class="font-medium mb-1">Specifications:</h4>
+<ul class="text-sm text-gray-400 list-disc pl-5">
+<li>Microcontroller: ATmega2560</li>
+<li>Operating Voltage: 5V</li>
+<li>Digital I/O Pins: 54</li>
+<li>Analog Input Pins: 16</li>
+</ul>
+</div>
+<button class="add-to-cart-btn mt-auto bg-primary text-gray-900 font-medium py-2 px-4 rounded-button hover:bg-opacity-80 transition-all whitespace-nowrap">
+Add to Cart
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="product-card h-96 animate-float-up" style="animation-delay: 0.3s;">
+<div class="card-inner h-full">
+<div class="card-front bg-gray-800 p-4 flex flex-col h-full">
+<div class="h-48 mb-4 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Ultrasonic%2520distance%2520sensor%2520module%2520HC-SR04%2520with%2520metallic%2520components%252C%2520professional%2520product%2520photography%2520on%2520dark%2520background%2520with%2520subtle%2520blue%2520lighting%252C%2520high%2520resolution%252C%2520detailed%2520electronic%2520components&width=400&height=300&seq=prod2&orientation=landscape" alt="Ultrasonic Sensor" class="w-full h-full object-cover object-top rounded">
+</div>
+<h3 class="text-xl font-semibold mb-2">Ultrasonic Sensor HC-SR04</h3>
+<div class="flex justify-between items-center mt-auto">
+<span class="text-primary font-bold">$3.99</span>
+<span class="bg-green-900 text-green-300 text-xs px-2 py-1 rounded">In Stock</span>
+</div>
+</div>
+<div class="card-back p-4 flex flex-col h-full">
+<h3 class="text-xl font-semibold mb-2">Ultrasonic Sensor HC-SR04</h3>
+<p class="text-gray-400 text-sm mb-4">The HC-SR04 ultrasonic sensor uses sonar to determine distance to an object. Perfect for robotics projects requiring distance measurement.</p>
+<div class="mb-4">
+<h4 class="font-medium mb-1">Specifications:</h4>
+<ul class="text-sm text-gray-400 list-disc pl-5">
+<li>Power Supply: 5V DC</li>
+<li>Range: 2cm - 400cm</li>
+<li>Resolution: 0.3cm</li>
+<li>Measuring Angle: 15 degrees</li>
+</ul>
+</div>
+<button class="add-to-cart-btn mt-auto bg-primary text-gray-900 font-medium py-2 px-4 rounded-button hover:bg-opacity-80 transition-all whitespace-nowrap">
+Add to Cart
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="product-card h-96 animate-float-up" style="animation-delay: 0.3s;">
+<div class="card-inner h-full">
+<div class="card-front bg-gray-800 p-4 flex flex-col h-full">
+<div class="h-48 mb-4 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Servo%2520motor%2520MG996R%2520with%2520metal%2520gears%2520and%2520mounting%2520brackets%252C%2520professional%2520product%2520photography%2520on%2520dark%2520background%2520with%2520subtle%2520blue%2520lighting%252C%2520high%2520resolution%252C%2520detailed%2520mechanical%2520components&width=400&height=300&seq=prod3&orientation=landscape" alt="Servo Motor" class="w-full h-full object-cover object-top rounded">
+</div>
+<h3 class="text-xl font-semibold mb-2">MG996R Servo Motor</h3>
+<div class="flex justify-between items-center mt-auto">
+<span class="text-primary font-bold">$12.49</span>
+<span class="bg-green-900 text-green-300 text-xs px-2 py-1 rounded">In Stock</span>
+</div>
+</div>
+<div class="card-back p-4 flex flex-col h-full">
+<h3 class="text-xl font-semibold mb-2">MG996R Servo Motor</h3>
+<p class="text-gray-400 text-sm mb-4">The MG996R is a high-torque metal gear servo motor ideal for robotics applications requiring precise control and significant force.</p>
+<div class="mb-4">
+<h4 class="font-medium mb-1">Specifications:</h4>
+<ul class="text-sm text-gray-400 list-disc pl-5">
+<li>Weight: 55g</li>
+<li>Torque: 9.4 kg/cm (4.8V)</li>
+<li>Speed: 0.17 sec/60° (4.8V)</li>
+<li>Rotation: 120°</li>
+</ul>
+</div>
+<button class="add-to-cart-btn mt-auto bg-primary text-gray-900 font-medium py-2 px-4 rounded-button hover:bg-opacity-80 transition-all whitespace-nowrap">
+Add to Cart
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="product-card h-96 animate-float-up" style="animation-delay: 0.3s;">
+<div class="card-inner h-full">
+<div class="card-front bg-gray-800 p-4 flex flex-col h-full">
+<div class="h-48 mb-4 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Raspberry%2520Pi%25204%2520Model%2520B%2520with%2520heatsinks%2520and%2520USB%2520ports%2520visible%252C%2520professional%2520product%2520photography%2520on%2520dark%2520background%2520with%2520subtle%2520blue%2520lighting%252C%2520high%2520resolution%252C%2520detailed%2520electronic%2520components&width=400&height=300&seq=prod4&orientation=landscape" alt="Raspberry Pi 4" class="w-full h-full object-cover object-top rounded">
+</div>
+<h3 class="text-xl font-semibold mb-2">Raspberry Pi 4 (4GB)</h3>
+<div class="flex justify-between items-center mt-auto">
+<span class="text-primary font-bold">$59.99</span>
+<span class="bg-red-900 text-red-300 text-xs px-2 py-1 rounded">Out of Stock</span>
+</div>
+</div>
+<div class="card-back p-4 flex flex-col h-full">
+<h3 class="text-xl font-semibold mb-2">Raspberry Pi 4 (4GB)</h3>
+<p class="text-gray-400 text-sm mb-4">The Raspberry Pi 4 Model B is the latest product in the Raspberry Pi range, offering significant improvements in processor speed, multimedia performance, and connectivity.</p>
+<div class="mb-4">
+<h4 class="font-medium mb-1">Specifications:</h4>
+<ul class="text-sm text-gray-400 list-disc pl-5">
+<li>Processor: Quad-core Cortex-A72</li>
+<li>RAM: 4GB LPDDR4</li>
+<li>Connectivity: 2.4/5.0 GHz Wi-Fi, BT 5.0</li>
+<li>Ports: 2× USB 3.0, 2× USB 2.0</li>
+</ul>
+</div>
+<button class="mt-auto bg-gray-700 text-gray-400 font-medium py-2 px-4 rounded-button cursor-not-allowed whitespace-nowrap">
+Notify Me
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="product-card h-96 animate-float-up" style="animation-delay: 0.3s;">
+<div class="card-inner h-full">
+<div class="card-front bg-gray-800 p-4 flex flex-col h-full">
+<div class="h-48 mb-4 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=Robot%2520chassis%2520kit%2520with%2520wheels%252C%2520motors%252C%2520and%2520metal%2520frame%252C%2520professional%2520product%2520photography%2520on%2520dark%2520background%2520with%2520subtle%2520blue%2520lighting%252C%2520high%2520resolution%252C%2520detailed%2520mechanical%2520components&width=400&height=300&seq=prod5&orientation=landscape" alt="Robot Chassis Kit" class="w-full h-full object-cover object-top rounded">
+</div>
+<h3 class="text-xl font-semibold mb-2">Robot Chassis Kit</h3>
+<div class="flex justify-between items-center mt-auto">
+<span class="text-primary font-bold">$29.99</span>
+<span class="bg-green-900 text-green-300 text-xs px-2 py-1 rounded">In Stock</span>
+</div>
+</div>
+<div class="card-back p-4 flex flex-col h-full">
+<h3 class="text-xl font-semibold mb-2">Robot Chassis Kit</h3>
+<p class="text-gray-400 text-sm mb-4">A complete robot chassis kit including aluminum frame, wheels, motors, and mounting hardware. Perfect for building your own mobile robot platform.</p>
+<div class="mb-4">
+<h4 class="font-medium mb-1">Specifications:</h4>
+<ul class="text-sm text-gray-400 list-disc pl-5">
+<li>Material: Aluminum alloy</li>
+<li>Motors: 2 × 12V DC motors</li>
+<li>Wheels: 65mm diameter</li>
+<li>Dimensions: 200 × 150 × 40mm</li>
+</ul>
+</div>
+<button class="add-to-cart-btn mt-auto bg-primary text-gray-900 font-medium py-2 px-4 rounded-button hover:bg-opacity-80 transition-all whitespace-nowrap">
+Add to Cart
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="product-card h-96 animate-float-up" style="animation-delay: 0.3s;">
+<div class="card-inner h-full">
+<div class="card-front bg-gray-800 p-4 flex flex-col h-full">
+<div class="h-48 mb-4 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=OLED%2520display%2520module%2520with%2520blue%2520screen%2520and%2520I2C%2520interface%252C%2520professional%2520product%2520photography%2520on%2520dark%2520background%2520with%2520subtle%2520blue%2520lighting%252C%2520high%2520resolution%252C%2520detailed%2520electronic%2520components&width=400&height=300&seq=prod6&orientation=landscape" alt="OLED Display" class="w-full h-full object-cover object-top rounded">
+</div>
+<h3 class="text-xl font-semibold mb-2">0.96" OLED Display</h3>
+<div class="flex justify-between items-center mt-auto">
+<span class="text-primary font-bold">$8.99</span>
+<span class="bg-green-900 text-green-300 text-xs px-2 py-1 rounded">In Stock</span>
+</div>
+</div>
+<div class="card-back p-4 flex flex-col h-full">
+<h3 class="text-xl font-semibold mb-2">0.96" OLED Display</h3>
+<p class="text-gray-400 text-sm mb-4">This 0.96-inch OLED display module features high brightness, high contrast, and wide viewing angle, making it perfect for robotics projects.</p>
+<div class="mb-4">
+<h4 class="font-medium mb-1">Specifications:</h4>
+<ul class="text-sm text-gray-400 list-disc pl-5">
+<li>Resolution: 128×64 pixels</li>
+<li>Interface: I2C</li>
+<li>Voltage: 3.3V-5V</li>
+<li>Viewing Angle: >160°</li>
+</ul>
+</div>
+<button class="add-to-cart-btn mt-auto bg-primary text-gray-900 font-medium py-2 px-4 rounded-button hover:bg-opacity-80 transition-all whitespace-nowrap">
+Add to Cart
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 text-center">
+<a href="Product.html"><button class="bg-gray-800 hover:bg-gray-700 text-white font-medium py-3 px-8 rounded-button transition-all whitespace-nowrap">
+View All Products
+</button>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Research Projects Section -->
+<section class="py-20 bg-gray-900">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="title-font text-3xl md:text-4xl font-bold mb-4">Research Projects</h2>
+<p class="text-gray-400 max-w-2xl mx-auto">Explore our cutting-edge research initiatives pushing the boundaries of robotics and automation technology.</p>
+</div>
+<div class="flex justify-center mb-10">
+<div class="inline-flex bg-gray-800 rounded-full p-1">
+<button class="tab-button active px-6 py-2 rounded-full text-sm font-medium whitespace-nowrap">All Projects</button>
+<button class="tab-button px-6 py-2 rounded-full text-sm font-medium whitespace-nowrap">AI</button>
+<button class="tab-button px-6 py-2 rounded-full text-sm font-medium whitespace-nowrap">Drones</button>
+<button class="tab-button px-6 py-2 rounded-full text-sm font-medium whitespace-nowrap">Automation</button>
+</div>
+</div>
+<div class="relative">
+<!-- Timeline Line -->
+<div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-700"></div>
+<!-- Timeline Items -->
+<div class="timeline-container">
+<!-- Timeline Item 1 -->
+<div class="timeline-item mb-16 relative">
+<div class="flex flex-col md:flex-row items-center">
+<div class="w-full md:w-1/2 md:pr-12 mb-8 md:mb-0 md:text-right">
+<div class="bg-gray-800 p-6 rounded-lg">
+<span class="inline-block bg-primary bg-opacity-20 text-primary text-xs font-medium px-3 py-1 rounded-full mb-4">May 2025</span>
+<h3 class="text-2xl font-semibold mb-3">Autonomous Drone Navigation System</h3>
+<p class="text-gray-400 mb-4">Our latest research on autonomous drone navigation using computer vision and deep learning algorithms for obstacle avoidance and path planning in complex environments.</p>
+<div class="flex justify-end">
+<button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-medium py-2 px-4 rounded-button flex items-center whitespace-nowrap">
+<span class="w-4 h-4 flex items-center justify-center mr-2">
+<i class="ri-file-download-line"></i>
+</span>
+Download PDF
+</button>
+</div>
+</div>
+</div>
+<div class="w-8 h-8 bg-primary rounded-full border-4 border-gray-900 absolute left-1/2 transform -translate-x-1/2 z-10"></div>
+<div class="w-full md:w-1/2 md:pl-12">
+<div class="bg-gray-800 rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=futuristic%2520drone%2520with%2520camera%2520sensors%2520flying%2520through%2520a%2520complex%2520environment%2520with%2520obstacles%252C%2520visualization%2520of%2520path%2520planning%2520algorithms%2520shown%2520as%2520glowing%2520lines%252C%2520high-tech%2520laboratory%2520setting%2520with%2520blue%2520lighting&width=600&height=400&seq=research1&orientation=landscape" alt="Autonomous Drone Navigation" class="w-full h-64 object-cover object-top">
+<div class="p-4 flex justify-center">
+<button id="demo-button-1" class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-medium py-2 px-4 rounded-button flex items-center whitespace-nowrap">
+<span class="w-4 h-4 flex items-center justify-center mr-2">
+<i class="ri-play-circle-line"></i>
+</span>
+Watch Demo
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="timeline-item mb-16 relative">
+<div class="flex flex-col md:flex-row items-center">
+<div class="w-full md:w-1/2 md:pr-12 mb-8 md:mb-0 order-2 md:order-1">
+<div class="bg-gray-800 rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=robotic%2520arm%2520with%2520multiple%2520joints%2520performing%2520precise%2520manipulation%2520of%2520small%2520objects%2520on%2520an%2520assembly%2520line%252C%2520computer%2520screens%2520showing%2520real-time%2520data%2520analysis%252C%2520high-tech%2520factory%2520environment%2520with%2520purple%2520and%2520blue%2520lighting&width=600&height=400&seq=research2&orientation=landscape" alt="Robotic Manipulation" class="w-full h-64 object-cover object-top">
+<div class="p-4 flex justify-center">
+<button id="demo-button-1" class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-medium py-2 px-4 rounded-button flex items-center whitespace-nowrap">
+<span class="w-4 h-4 flex items-center justify-center mr-2">
+<i class="ri-play-circle-line"></i>
+</span>
+Watch Demo
+</button>
+</div>
+</div>
+</div>
+<div class="w-8 h-8 bg-primary rounded-full border-4 border-gray-900 absolute left-1/2 transform -translate-x-1/2 z-10"></div>
+<div class="w-full md:w-1/2 md:pl-12 order-1 md:order-2 md:text-left">
+<div class="bg-gray-800 p-6 rounded-lg">
+<span class="inline-block bg-primary bg-opacity-20 text-primary text-xs font-medium px-3 py-1 rounded-full mb-4">March 2025</span>
+<h3 class="text-2xl font-semibold mb-3">Advanced Robotic Manipulation</h3>
+<p class="text-gray-400 mb-4">Research on improving robotic manipulation capabilities through reinforcement learning and adaptive control systems for industrial automation applications.</p>
+<div class="flex justify-start">
+<button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-medium py-2 px-4 rounded-button flex items-center whitespace-nowrap">
+<span class="w-4 h-4 flex items-center justify-center mr-2">
+<i class="ri-file-download-line"></i>
+</span>
+Download PDF
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="timeline-item mb-16 relative">
+<div class="flex flex-col md:flex-row items-center">
+<div class="w-full md:w-1/2 md:pr-12 mb-8 md:mb-0 md:text-right">
+<div class="bg-gray-800 p-6 rounded-lg">
+<span class="inline-block bg-primary bg-opacity-20 text-primary text-xs font-medium px-3 py-1 rounded-full mb-4">January 2025</span>
+<h3 class="text-2xl font-semibold mb-3">Neural Network for Robot Vision</h3>
+<p class="text-gray-400 mb-4">Developing advanced neural network architectures for real-time object recognition and scene understanding in dynamic environments for robotic systems.</p>
+<div class="flex justify-end">
+<button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-medium py-2 px-4 rounded-button flex items-center whitespace-nowrap">
+<span class="w-4 h-4 flex items-center justify-center mr-2">
+<i class="ri-file-download-line"></i>
+</span>
+Download PDF
+</button>
+</div>
+</div>
+</div>
+<div class="w-8 h-8 bg-primary rounded-full border-4 border-gray-900 absolute left-1/2 transform -translate-x-1/2 z-10"></div>
+<div class="w-full md:w-1/2 md:pl-12">
+<div class="bg-gray-800 rounded-lg overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=robot%2520with%2520camera%2520eyes%2520looking%2520at%2520objects%2520with%2520digital%2520overlay%2520showing%2520object%2520recognition%2520and%2520classification%252C%2520neural%2520network%2520visualization%2520in%2520background%252C%2520futuristic%2520laboratory%2520with%2520multiple%2520screens%2520showing%2520data%2520processing&width=600&height=400&seq=research3&orientation=landscape" alt="Neural Network Vision" class="w-full h-64 object-cover object-top">
+<div class="p-4 flex justify-center">
+<button id="demo-button-1" class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-medium py-2 px-4 rounded-button flex items-center whitespace-nowrap">
+<span class="w-4 h-4 flex items-center justify-center mr-2">
+<i class="ri-play-circle-line"></i>
+</span>
+Watch Demo
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center mt-8">
+<a href="./Research.html" data-readdy="true">
+<button class="bg-gray-800 hover:bg-gray-700 text-white font-medium py-3 px-8 rounded-button transition-all whitespace-nowrap">
+View All Research
+</button>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Analytics Dashboard Preview -->
+<section class="py-20">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="title-font text-3xl md:text-4xl font-bold mb-4">Performance Analytics</h2>
+<p class="text-gray-400 max-w-2xl mx-auto">Track and analyze your robotics projects with our advanced analytics dashboard.</p>
+</div>
+<div class="bg-gray-800 rounded-lg p-6 md:p-10">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+<div class="bg-gray-900 rounded-lg p-6">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-lg font-semibold">Power Consumption</h3>
+<span class="w-8 h-8 flex items-center justify-center bg-gray-800 rounded-full text-primary">
+<i class="ri-battery-charge-line"></i>
+</span>
+</div>
+<div id="power-chart" class="h-60"></div>
+</div>
+<div class="bg-gray-900 rounded-lg p-6">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-lg font-semibold">Sensor Readings</h3>
+<span class="w-8 h-8 flex items-center justify-center bg-gray-800 rounded-full text-primary">
+<i class="ri-sensor-line"></i>
+</span>
+</div>
+<div id="sensor-chart" class="h-60"></div>
+</div>
+<div class="bg-gray-900 rounded-lg p-6">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-lg font-semibold">Performance Metrics</h3>
+<span class="w-8 h-8 flex items-center justify-center bg-gray-800 rounded-full text-primary">
+<i class="ri-speed-line"></i>
+</span>
+</div>
+<div id="performance-chart" class="h-60"></div>
+</div>
+</div>
+<div class="text-center">
+<button class="bg-primary text-gray-900 font-medium py-3 px-8 rounded-button hover:bg-opacity-80 transition-all whitespace-nowrap">
+Access Full Dashboard
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter Section -->
+<section class="py-20 bg-gray-900">
+<div class="container mx-auto px-6">
+<div class="max-w-4xl mx-auto bg-gray-800 rounded-lg p-8 md:p-12">
+<div class="text-center mb-8">
+<h2 class="title-font text-3xl font-bold mb-4">Stay Updated</h2>
+<p class="text-gray-400">Subscribe to our newsletter for the latest updates on robotics technology, research breakthroughs, and exclusive offers.</p>
+</div>
+<form class="max-w-xl mx-auto">
+<div class="flex flex-col sm:flex-row gap-4">
+<input type="email" placeholder="Enter your email" class="search-input flex-1 py-3 px-4 rounded-button text-sm border-none">
+<button type="submit" class="bg-primary text-gray-900 font-medium py-3 px-6 rounded-button hover:bg-opacity-80 transition-all whitespace-nowrap">
+Subscribe
+</button>
+</div>
+</form>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-800 pt-16 pb-8" id="ft-color">
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
+<div>
+<a href="#" class="text-2xl font-orbitron flex items-center mb-6">
+  <span class="text-primary font-bold mr-1">Robo</span>
+  <span class="text-white">Horizon</span>
+  <!-- <span class="text-xs text-secondary ml-2 mt-1">Innovate • Build • Research</span> -->
+</a>
+<p class="text-gray-400 mb-6">Pioneering the future of robotics with cutting-edge technology and innovative research.</p>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-twitter-x-line"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-instagram-line"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+<i class="ri-linkedin-fill"></i>
+</a>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-6">Products</h3>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-primary">Arduino</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary">Sensors</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary">Motors</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary">Robotic Parts</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary">Development Kits</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-6">Research</h3>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-primary">AI & Machine Learning</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary">Drone Technology</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary">Automation Systems</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary">Computer Vision</a></li>
+<li><a href="#" class="text-gray-400 hover:text-primary">Publications</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-6">Contact</h3>
+<ul class="space-y-3">
+<li class="flex items-start">
+<span class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-3">
+<i class="ri-map-pin-line"></i>
+</span>
+<span class="text-gray-400">123 Innovation Drive, Tech City, TC 54321</span>
+</li>
+<li class="flex items-start">
+<span class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-3">
+<i class="ri-mail-line"></i>
+</span>
+<span class="text-gray-400">info@robotechnexus.com</span>
+</li>
+<li class="flex items-start">
+<span class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-3">
+<i class="ri-phone-line"></i>
+</span>
+<span class="text-gray-400">+1 (555) 123-4567</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-700">
+<div class="mb-4 md:mb-0">
+<p class="text-gray-500 text-sm">© 2025 RoboTech Nexus. All rights reserved.</p>
+</div>
+<div class="flex items-center space-x-6">
+<a href="#" class="text-gray-500 text-sm hover:text-gray-300">Privacy Policy</a>
+<a href="#" class="text-gray-500 text-sm hover:text-gray-300">Terms of Service</a>
+<a href="#" class="text-gray-500 text-sm hover:text-gray-300">Cookie Policy</a>
+</div>
+<div class="mt-4 md:mt-0 flex items-center space-x-4">
+<span class="text-gray-500 text-sm">Payment Methods:</span>
+<span class="w-8 h-8 flex items-center justify-center text-gray-400">
+<i class="ri-visa-fill ri-lg"></i>
+</span>
+<span class="w-8 h-8 flex items-center justify-center text-gray-400">
+<i class="ri-mastercard-fill ri-lg"></i>
+</span>
+<span class="w-8 h-8 flex items-center justify-center text-gray-400">
+<i class="ri-paypal-fill ri-lg"></i>
+</span>
+</div>
+</div>
+</div>
+</div>
+</footer>
+
+<!-- Robot Mascot (Floating) -->
+<canvas id="robotCanvas" width="120" height="120"></canvas>
+<div class="fixed bottom-6 right-6 z-[9999] robot-mascot">
+<div id="robotMascot" class="w-16 h-16 md:w-20 md:h-20 bg-gray-800 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-gray-700 transition-all">
+<i class="ri-robot-fill ri-2x text-primary"></i>
+</div>
+<!-- Chat Dialog -->
+<div id="chatDialog" class="hidden absolute bottom-24 right-0 w-80 md:w-96 bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+<div class="p-4 bg-gray-700 flex justify-between items-center border-b border-gray-600">
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mr-3">
+<i class="ri-robot-fill text-primary"></i>
+</div>
+<h3 class="font-semibold">RoboTech Assistant</h3>
+</div>
+<div class="flex items-center gap-2">
+<button id="minimizeChat" class="w-8 h-8 flex items-center justify-center hover:bg-gray-600 rounded-full transition-all">
+<i class="ri-subtract-line"></i>
+</button>
+<button id="closeChat" class="w-8 h-8 flex items-center justify-center hover:bg-gray-600 rounded-full transition-all">
+<i class="ri-close-line"></i>
+</button>
+</div>
+</div>
+<div id="chatMessages" class="h-80 overflow-y-auto p-4 space-y-4">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 flex items-center justify-center bg-primary bg-opacity-20 rounded-full flex-shrink-0">
+<i class="ri-robot-fill text-primary text-sm"></i>
+</div>
+<div class="bg-gray-700 rounded-lg p-3 text-sm max-w-[80%]">
+Hello! How can I help you with our research projects today?
+</div>
+</div>
+</div>
+<div class="p-4 bg-gray-700 border-t border-gray-600">
+<div class="flex flex-wrap gap-2 mb-3">
+<button class="quick-action-btn bg-gray-600 hover:bg-gray-500 text-sm px-3 py-1 rounded-full transition-all">Latest Research</button>
+<button class="quick-action-btn bg-gray-600 hover:bg-gray-500 text-sm px-3 py-1 rounded-full transition-all">AI Projects</button>
+<button class="quick-action-btn bg-gray-600 hover:bg-gray-500 text-sm px-3 py-1 rounded-full transition-all">Contact Team</button>
+</div>
+<div class="flex gap-2">
+<input id="chatInput" type="text" placeholder="Type your message..." class="flex-1 bg-gray-600 border-none rounded text-sm p-3">
+<button id="sendMessage" class="bg-primary text-gray-900 px-4 rounded hover:bg-opacity-80 transition-all">
+<i class="ri-send-plane-fill"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Create modal container
+const modalContainer = document.createElement('div');
+modalContainer.id = 'video-modal';
+modalContainer.className = 'fixed inset-0 z-50 hidden';
+modalContainer.innerHTML = `
+  <div class="absolute inset-0 bg-gray-900 bg-opacity-75" id="modal-overlay"></div>
+  <div class="relative min-h-screen flex items-center justify-center p-4">
+    <div class="bg-gray-800 rounded-lg w-full max-w-4xl">
+      <div class="flex justify-between items-center p-6 border-b border-gray-700">
+        <h3 class="text-xl font-semibold" id="modal-title"></h3>
+        <button class="text-gray-400 hover:text-white" id="close-modal">
+          <span class="w-8 h-8 flex items-center justify-center">
+            <i class="ri-close-line ri-lg"></i>
+          </span>
+        </button>
+      </div>
+      <div class="p-6">
+        <div class="aspect-w-16 aspect-h-9 mb-6">
+          <div class="w-full h-full bg-gray-900 rounded flex items-center justify-center">
+            <i class="ri-video-line ri-3x text-gray-600"></i>
+          </div>
+        </div>
+        <p class="text-gray-400" id="modal-description"></p>
+      </div>
+    </div>
+  </div>
+`;
+document.body.appendChild(modalContainer);
+// Handle demo video buttons
+const demoButtons = document.querySelectorAll('[id^="demo-button-"]');
+demoButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    const projectTitle = button.closest('.timeline-item').querySelector('h3').textContent;
+    const projectDesc = button.closest('.timeline-item').querySelector('p').textContent;
+    
+    const modal = document.getElementById('video-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-description');
+    
+    modalTitle.textContent = projectTitle;
+    modalDesc.textContent = projectDesc;
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  });
+});
+// Close modal handlers
+document.getElementById('close-modal').addEventListener('click', () => {
+  const modal = document.getElementById('video-modal');
+  modal.classList.add('hidden');
+  document.body.style.overflow = '';
+});
+document.getElementById('modal-overlay').addEventListener('click', () => {
+  const modal = document.getElementById('video-modal');
+  modal.classList.add('hidden');
+  document.body.style.overflow = '';
+});
+// Tab Switching
+const tabButtons = document.querySelectorAll('.tab-button');
+tabButtons.forEach(button => {
+button.addEventListener('click', () => {
+tabButtons.forEach(btn => btn.classList.remove('active'));
+button.classList.add('active');
+});
+});
+// Counter Animation
+const counters = document.querySelectorAll('.counter-value');
+counters.forEach(counter => {
+const target = parseInt(counter.getAttribute('data-target'));
+const duration = 2000; // 2 seconds
+const step = target / (duration / 16); // 60fps
+let current = 0;
+const updateCounter = () => {
+current += step;
+if (current < target) {
+counter.textContent = Math.floor(current);
+requestAnimationFrame(updateCounter);
+} else {
+counter.textContent = target;
+}
+};
+updateCounter();
+});
+// Scroll Animation for Timeline
+const timelineItems = document.querySelectorAll('.timeline-item');
+const checkScroll = () => {
+timelineItems.forEach(item => {
+const itemTop = item.getBoundingClientRect().top;
+const windowHeight = window.innerHeight;
+if (itemTop < windowHeight * 0.8) {
+item.classList.add('visible');
+}
+});
+};
+window.addEventListener('scroll', checkScroll);
+checkScroll(); // Check on initial load
+// Create Particles
+const particlesContainer = document.querySelector('.particles');
+const particleCount = 15;
+const particleImages = [
+'gear', 'circuit', 'chip', 'code'
+];
+for (let i = 0; i < particleCount; i++) {
+const particle = document.createElement('div');
+particle.classList.add('particle');
+// Random position
+const posX = Math.random() * 100;
+const posY = Math.random() * 100;
+// Random size
+const size = Math.random() * 20 + 10;
+// Random rotation
+const rotation = Math.random() * 360;
+// Random animation duration
+const duration = Math.random() * 10 + 15;
+// Random delay
+const delay = Math.random() * 5;
+// Set styles
+particle.style.left = `${posX}%`;
+particle.style.top = `${posY}%`;
+particle.style.width = `${size}px`;
+particle.style.height = `${size}px`;
+particle.style.transform = `rotate(${rotation}deg)`;
+particle.style.animationDuration = `${duration}s`;
+particle.style.animationDelay = `${delay}s`;
+// Choose a random icon
+const iconType = particleImages[Math.floor(Math.random() * particleImages.length)];
+// Create icon
+const icon = document.createElement('i');
+icon.className = `ri-${iconType}-line text-primary opacity-30`;
+icon.style.fontSize = `${size}px`;
+particle.appendChild(icon);
+particlesContainer.appendChild(particle);
+}
+// Initialize Charts
+// Power Consumption Chart
+const powerChart = echarts.init(document.getElementById('power-chart'));
+const powerOption = {
+animation: false,
+grid: {
+top: 10,
+right: 10,
+bottom: 20,
+left: 40
+},
+xAxis: {
+type: 'category',
+data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+axisLine: {
+lineStyle: {
+color: '#4B5563'
+}
+},
+axisLabel: {
+color: '#9CA3AF'
+}
+},
+yAxis: {
+type: 'value',
+axisLine: {
+lineStyle: {
+color: '#4B5563'
+}
+},
+axisLabel: {
+color: '#9CA3AF'
+},
+splitLine: {
+lineStyle: {
+color: '#374151'
+}
+}
+},
+tooltip: {
+trigger: 'axis',
+backgroundColor: 'rgba(255, 255, 255, 0.8)',
+textStyle: {
+color: '#1f2937'
+}
+},
+series: [{
+data: [150, 230, 224, 218, 135, 147, 260],
+type: 'line',
+smooth: true,
+symbol: 'none',
+lineStyle: {
+color: 'rgba(87, 181, 231, 1)'
+},
+areaStyle: {
+color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+{
+offset: 0,
+color: 'rgba(87, 181, 231, 0.3)'
+},
+{
+offset: 1,
+color: 'rgba(87, 181, 231, 0.1)'
+}
+])
+}
+}]
+};
+powerChart.setOption(powerOption);
+// Sensor Readings Chart
+const sensorChart = echarts.init(document.getElementById('sensor-chart'));
+const sensorOption = {
+animation: false,
+grid: {
+top: 10,
+right: 10,
+bottom: 20,
+left: 40
+},
+xAxis: {
+type: 'category',
+data: ['Temp', 'Humid', 'Press', 'Light', 'Sound', 'Prox'],
+axisLine: {
+lineStyle: {
+color: '#4B5563'
+}
+},
+axisLabel: {
+color: '#9CA3AF'
+}
+},
+yAxis: {
+type: 'value',
+axisLine: {
+lineStyle: {
+color: '#4B5563'
+}
+},
+axisLabel: {
+color: '#9CA3AF'
+},
+splitLine: {
+lineStyle: {
+color: '#374151'
+}
+}
+},
+tooltip: {
+trigger: 'axis',
+backgroundColor: 'rgba(255, 255, 255, 0.8)',
+textStyle: {
+color: '#1f2937'
+}
+},
+series: [{
+data: [120, 200, 150, 80, 70, 110],
+type: 'bar',
+barWidth: '60%',
+itemStyle: {
+color: 'rgba(141, 211, 199, 1)',
+borderRadius: [4, 4, 0, 0]
+}
+}]
+};
+sensorChart.setOption(sensorOption);
+// Performance Metrics Chart
+const performanceChart = echarts.init(document.getElementById('performance-chart'));
+const performanceOption = {
+animation: false,
+grid: {
+top: 10,
+right: 10,
+bottom: 20,
+left: 40
+},
+tooltip: {
+trigger: 'item',
+backgroundColor: 'rgba(255, 255, 255, 0.8)',
+textStyle: {
+color: '#1f2937'
+}
+},
+series: [{
+name: 'Performance',
+type: 'pie',
+radius: ['40%', '70%'],
+avoidLabelOverlap: false,
+itemStyle: {
+borderRadius: 6,
+borderColor: '#0F172A',
+borderWidth: 2
+},
+label: {
+show: false
+},
+emphasis: {
+label: {
+show: true,
+fontSize: '12',
+fontWeight: 'bold',
+color: '#FFFFFF'
+}
+},
+labelLine: {
+show: false
+},
+data: [
+{ value: 1048, name: 'CPU', itemStyle: { color: 'rgba(87, 181, 231, 1)' } },
+{ value: 735, name: 'Memory', itemStyle: { color: 'rgba(141, 211, 199, 1)' } },
+{ value: 580, name: 'Storage', itemStyle: { color: 'rgba(251, 191, 114, 1)' } },
+{ value: 484, name: 'Network', itemStyle: { color: 'rgba(252, 141, 98, 1)' } }
+]
+}]
+};
+performanceChart.setOption(performanceOption);
+// Resize charts when window size changes
+window.addEventListener('resize', function() {
+powerChart.resize();
+sensorChart.resize();
+performanceChart.resize();
+});
+// Add smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    
+    const targetId = this.getAttribute('href');
+    if (targetId === '#') return;
+    
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop - 100,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+// Add animation on scroll to more elements
+const animateElements = document.querySelectorAll('.product-card, .bg-gray-800, .timeline-item');
+
+const animateOnScroll = () => {
+  animateElements.forEach(element => {
+    const elementTop = element.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    
+    if (elementTop < windowHeight * 0.9) {
+      element.classList.add('animate-float-up');
+    }
+  });
+};
+
+window.addEventListener('scroll', animateOnScroll);
+animateOnScroll();
+});
+
+// Loading screen functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const loadingScreen = document.getElementById('loading-screen');
+  const progressBar = document.querySelector('.loading-progress-bar');
+  
+  // Simulate loading progress
+  let progress = 0;
+  const interval = setInterval(function() {
+    progress += Math.random() * 10;
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(interval);
+      
+      // Short delay before hiding loading screen
+      setTimeout(function() {
+        loadingScreen.classList.add('loading-hidden');
+      }, 500);
+    }
+    progressBar.style.width = progress + '%';
+  }, 200);
+  
+  // Fallback to ensure loading screen disappears even if something goes wrong
+  setTimeout(function() {
+    loadingScreen.classList.add('loading-hidden');
+  }, 4000);
+});
+</script>
+<script src="Research.js"></script>
+</body>
+</html>

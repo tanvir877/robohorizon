@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Products - Electronics Shop</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#00e5ff',secondary:'#0a192f'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<link rel="shortcut icon" href="https://pbs.twimg.com/profile_images/1499265096006000640/ZhEnSTch_400x400.jpg" type="image/x-icon">
+<link rel="stylesheet" href="./product.css">
+<!-- <style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+background-color: #0a192f;
+color: #fff;
+}
+input[type="range"]::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 18px;
+height: 18px;
+border-radius: 50%;
+background: #00e5ff;
+cursor: pointer;
+}
+.custom-checkbox {
+position: relative;
+padding-left: 28px;
+cursor: pointer;
+user-select: none;
+}
+.custom-checkbox input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+height: 0;
+width: 0;
+}
+.checkmark {
+position: absolute;
+top: 0;
+left: 0;
+height: 20px;
+width: 20px;
+background-color: transparent;
+border: 2px solid #4b5563;
+border-radius: 4px;
+}
+.custom-checkbox:hover input ~ .checkmark {
+border-color: #00e5ff;
+}
+.custom-checkbox input:checked ~ .checkmark {
+background-color: #00e5ff;
+border-color: #00e5ff;
+}
+.checkmark:after {
+content: "";
+position: absolute;
+display: none;
+}
+.custom-checkbox input:checked ~ .checkmark:after {
+display: block;
+}
+.custom-checkbox .checkmark:after {
+left: 6px;
+top: 2px;
+width: 5px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.switch {
+position: relative;
+display: inline-block;
+width: 48px;
+height: 24px;
+}
+.switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #2d3748;
+transition: .4s;
+border-radius: 24px;
+}
+.slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .slider {
+background-color: #00e5ff;
+}
+input:checked + .slider:before {
+transform: translateX(24px);
+}
+#ft-color {
+    background-color: #00000083;
+}
+</style> -->
+</head>
+<body>
+<div class="min-h-screen">
+<!-- Header -->
+<header class="bg-[#0f172a] py-4 px-6">
+<div class="container mx-auto flex items-center justify-between">
+  <a href="index.html" class="text-2xl font-orbitron flex items-center">
+    <span class="text-primary font-bold mr-1">Robo</span>
+    <span class="text-white">Horizon</span>
+<nav class="flex items-center space-x-8">
+<div class="relative group">
+<button class="flex items-center space-x-1 text-white hover:text-primary transition">
+<span style="font-size: medium;">Products</span>
+<!-- <i class="ri-arrow-down-s-line"></i> -->
+</button>
+</div>
+<a href="Research.html" class="text-white hover:text-primary transition">Research</a>
+<a href="About.html" class="text-white hover:text-primary transition">About</a>
+<a href="Contact.html" class="text-white hover:text-primary transition">Contact</a>
+<a href="Cyberlink.html" class="text-white hover:text-primary transition">Robo-Canvas</a> <!-- New Cyberlink Page -->
+</nav>
+<div class="flex items-center space-x-6">
+<div class="relative">
+<input type="text" placeholder="Search..." class="bg-[#1e293b] text-sm text-white py-2 pl-10 pr-4 rounded-button w-64 border-none focus:outline-none focus:ring-2 focus:ring-primary">
+<div class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 flex items-center justify-center text-gray-400">
+<i class="ri-search-line"></i>
+</div>
+</div>
+<div class="relative w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#1e293b] text-white cursor-pointer">
+<i class="ri-shopping-cart-line text-xl"></i>
+<span class="absolute -top-1 -right-1 bg-primary text-[#0f172a] text-xs w-5 h-5 flex items-center justify-center rounded-full">2</span>
+</div>
+<a href="index.html" class="flex items-center text-white hover:text-primary transition">
+<i class="ri-arrow-left-line mr-1"></i>
+<span>Back to Home</span>
+</a>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="container mx-auto py-8 px-4">
+<div class="flex flex-col md:flex-row gap-6">
+<!-- Filters Sidebar -->
+<div class="w-full md:w-1/4 lg:w-1/5">
+<div class="bg-[#162a45] rounded-lg p-5 shadow-lg sticky top-4">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-xl font-semibold">Filters</h2>
+<button class="text-sm text-primary hover:underline">Clear All</button>
+</div>
+<!-- Price Range -->
+<div class="mb-6">
+<h3 class="font-medium mb-3">Price Range</h3>
+<div class="flex justify-between text-sm text-gray-400 mb-2">
+<span>$0</span>
+<span>$1000</span>
+</div>
+<input type="range" min="0" max="1000" value="1000" class="w-full h-2 bg-[#2d3748] rounded-full appearance-none">
+<div class="flex justify-between mt-3">
+<div class="relative">
+<span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">$</span>
+<input type="text" value="0" class="bg-[#1e3a5e] w-20 py-1 pl-8 pr-2 rounded border-none text-white text-center">
+</div>
+<div class="relative">
+<span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">$</span>
+<input type="text" value="1000" class="bg-[#1e3a5e] w-20 py-1 pl-8 pr-2 rounded border-none text-white text-center">
+</div>
+</div>
+</div>
+<!-- Categories -->
+<div class="mb-6">
+<h3 class="font-medium mb-3">Categories</h3>
+<div class="space-y-2">
+<label class="custom-checkbox flex items-center">
+<input type="checkbox" checked>
+<span class="checkmark"></span>
+<span class="ml-2">Arduino</span>
+</label>
+<label class="custom-checkbox flex items-center">
+<input type="checkbox" checked>
+<span class="checkmark"></span>
+<span class="ml-2">Sensors</span>
+</label>
+<label class="custom-checkbox flex items-center">
+<input type="checkbox" checked>
+<span class="checkmark"></span>
+<span class="ml-2">Motors</span>
+</label>
+<label class="custom-checkbox flex items-center">
+<input type="checkbox" checked>
+<span class="checkmark"></span>
+<span class="ml-2">Robotic Parts</span>
+</label>
+<label class="custom-checkbox flex items-center">
+<input type="checkbox">
+<span class="checkmark"></span>
+<span class="ml-2">Raspberry Pi</span>
+</label>
+<label class="custom-checkbox flex items-center">
+<input type="checkbox">
+<span class="checkmark"></span>
+<span class="ml-2">Displays</span>
+</label>
+<label class="custom-checkbox flex items-center">
+<input type="checkbox">
+<span class="checkmark"></span>
+<span class="ml-2">Power Supply</span>
+</label>
+<label class="custom-checkbox flex items-center">
+<input type="checkbox">
+<span class="checkmark"></span>
+<span class="ml-2">IoT Modules</span>
+</label>
+</div>
+</div>
+<!-- Availability -->
+<div class="mb-6">
+<h3 class="font-medium mb-3">Availability</h3>
+<div class="flex items-center">
+<span class="mr-3">In Stock Only</span>
+<label class="switch">
+<input type="checkbox" checked>
+<span class="slider"></span>
+</label>
+</div>
+</div>
+<!-- Ratings -->
+<div class="mb-6">
+<h3 class="font-medium mb-3">Ratings</h3>
+<div class="space-y-2">
+<label class="custom-checkbox flex items-center">
+<input type="checkbox">
+<span class="checkmark"></span>
+<div class="flex items-center ml-2">
+<div class="flex">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+</div>
+</div>
+</label>
+<label class="custom-checkbox flex items-center">
+<input type="checkbox">
+<span class="checkmark"></span>
+<div class="flex items-center ml-2">
+<div class="flex">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-line text-gray-500"></i>
+</div>
+<span class="ml-1">& up</span>
+</div>
+</label>
+<label class="custom-checkbox flex items-center">
+<input type="checkbox">
+<span class="checkmark"></span>
+<div class="flex items-center ml-2">
+<div class="flex">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-line text-gray-500"></i>
+<i class="ri-star-line text-gray-500"></i>
+</div>
+<span class="ml-1">& up</span>
+</div>
+</label>
+<label class="custom-checkbox flex items-center">
+<input type="checkbox">
+<span class="checkmark"></span>
+<div class="flex items-center ml-2">
+<div class="flex">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-line text-gray-500"></i>
+<i class="ri-star-line text-gray-500"></i>
+<i class="ri-star-line text-gray-500"></i>
+</div>
+<span class="ml-1">& up</span>
+</div>
+</label>
+</div>
+</div>
+<button class="w-full bg-primary text-[#0a192f] font-semibold py-3 rounded-button hover:bg-opacity-90 transition">Apply Filters</button>
+</div>
+</div>
+<!-- Products Grid -->
+<div class="w-full md:w-3/4 lg:w-4/5">
+<div class="flex justify-between items-center mb-6">
+<h1 class="text-2xl font-bold">All Products</h1>
+<div class="flex items-center space-x-4">
+<div class="relative">
+<select class="appearance-none bg-[#162a45] text-white py-2 pl-4 pr-10 rounded-button border-none focus:outline-none focus:ring-2 focus:ring-primary">
+<option>Sort by: Featured</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+<option>Newest First</option>
+<option>Best Rated</option>
+</select>
+<div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none w-4 h-4 flex items-center justify-center">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</div>
+<div class="flex space-x-2">
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-[#0a192f] rounded-button">
+<i class="ri-layout-grid-line"></i>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-[#162a45] text-white rounded-button">
+<i class="ri-list-check"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- Active Filters -->
+<div class="flex flex-wrap gap-2 mb-6">
+<div class="bg-[#162a45] px-3 py-1 rounded-full flex items-center">
+<span class="text-sm">Arduino</span>
+<button class="ml-2 text-primary">
+<i class="ri-close-line"></i>
+</button>
+</div>
+<div class="bg-[#162a45] px-3 py-1 rounded-full flex items-center">
+<span class="text-sm">Sensors</span>
+<button class="ml-2 text-primary">
+<i class="ri-close-line"></i>
+</button>
+</div>
+<div class="bg-[#162a45] px-3 py-1 rounded-full flex items-center">
+<span class="text-sm">Motors</span>
+<button class="ml-2 text-primary">
+<i class="ri-close-line"></i>
+</button>
+</div>
+<div class="bg-[#162a45] px-3 py-1 rounded-full flex items-center">
+<span class="text-sm">In Stock</span>
+<button class="ml-2 text-primary">
+<i class="ri-close-line"></i>
+</button>
+</div>
+</div>
+<!-- Products Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Product 1 -->
+<div class="bg-[#162a45] rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-[1.02] group">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=Arduino%20Mega%202560%20microcontroller%20board%20with%20blue%20PCB%2C%20detailed%20electronic%20components%2C%20clear%20pins%20and%20connectors%2C%20professional%20product%20photography%20on%20dark%20background&width=400&height=300&seq=1&orientation=landscape" alt="Arduino Mega 2560" class="w-full h-48 object-cover object-top">
+<div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+<button class="bg-primary text-[#0a192f] px-4 py-2 rounded-button font-medium transform -translate-y-4 group-hover:translate-y-0 transition-all !rounded-button whitespace-nowrap">Quick View</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-medium text-lg mb-2">Arduino Mega 2560</h3>
+<div class="flex items-center mb-3">
+<div class="flex mr-2">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-half-fill text-yellow-400"></i>
+</div>
+<span class="text-sm text-gray-400">(128)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-xl">$45.99</span>
+<span class="bg-green-600 text-white text-xs px-2 py-1 rounded">In Stock</span>
+</div>
+<button class="w-full mt-4 bg-[#1e3a5e] hover:bg-[#2a4e7a] text-white py-2 rounded-button flex items-center justify-center !rounded-button whitespace-nowrap">
+<i class="ri-shopping-cart-line mr-2"></i>
+Add to Cart
+</button>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="bg-[#162a45] rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-[1.02] group">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=Ultrasonic%20Sensor%20HC-SR04%2C%20detailed%20electronic%20component%20with%20gold-plated%20connectors%2C%20professional%20product%20photography%20on%20dark%20background%2C%20clear%20view%20of%20sensor%20elements&width=400&height=300&seq=2&orientation=landscape" alt="Ultrasonic Sensor HC-SR04" class="w-full h-48 object-cover object-top">
+<div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+<button class="bg-primary text-[#0a192f] px-4 py-2 rounded-button font-medium transform -translate-y-4 group-hover:translate-y-0 transition-all !rounded-button whitespace-nowrap">Quick View</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-medium text-lg mb-2">Ultrasonic Sensor HC-SR04</h3>
+<div class="flex items-center mb-3">
+<div class="flex mr-2">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-line text-gray-500"></i>
+</div>
+<span class="text-sm text-gray-400">(95)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-xl">$3.99</span>
+<span class="bg-green-600 text-white text-xs px-2 py-1 rounded">In Stock</span>
+</div>
+<button class="w-full mt-4 bg-[#1e3a5e] hover:bg-[#2a4e7a] text-white py-2 rounded-button flex items-center justify-center !rounded-button whitespace-nowrap">
+<i class="ri-shopping-cart-line mr-2"></i>
+Add to Cart
+</button>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="bg-[#162a45] rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-[1.02] group">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=MG996R%20Servo%20Motor%2C%20detailed%20electronic%20component%20with%20metal%20gears%20visible%2C%20professional%20product%20photography%20on%20dark%20background%2C%20high-quality%20servo%20with%20mounting%20brackets&width=400&height=300&seq=3&orientation=landscape" alt="MG996R Servo Motor" class="w-full h-48 object-cover object-top">
+<div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+<button class="bg-primary text-[#0a192f] px-4 py-2 rounded-button font-medium transform -translate-y-4 group-hover:translate-y-0 transition-all !rounded-button whitespace-nowrap">Quick View</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-medium text-lg mb-2">MG996R Servo Motor</h3>
+<div class="flex items-center mb-3">
+<div class="flex mr-2">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-half-fill text-yellow-400"></i>
+</div>
+<span class="text-sm text-gray-400">(213)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-xl">$12.49</span>
+<span class="bg-green-600 text-white text-xs px-2 py-1 rounded">In Stock</span>
+</div>
+<button class="w-full mt-4 bg-[#1e3a5e] hover:bg-[#2a4e7a] text-white py-2 rounded-button flex items-center justify-center !rounded-button whitespace-nowrap">
+<i class="ri-shopping-cart-line mr-2"></i>
+Add to Cart
+</button>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="bg-[#162a45] rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-[1.02] group">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=Raspberry%20Pi%204%20%284GB%29%20microcomputer%20board%20with%20detailed%20ports%20and%20components%2C%20professional%20product%20photography%20on%20dark%20background%20with%20subtle%20red%20and%20blue%20lighting&width=400&height=300&seq=4&orientation=landscape" alt="Raspberry Pi 4 (4GB)" class="w-full h-48 object-cover object-top">
+<div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+<button class="bg-primary text-[#0a192f] px-4 py-2 rounded-button font-medium transform -translate-y-4 group-hover:translate-y-0 transition-all !rounded-button whitespace-nowrap">Quick View</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-medium text-lg mb-2">Raspberry Pi 4 (4GB)</h3>
+<div class="flex items-center mb-3">
+<div class="flex mr-2">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+</div>
+<span class="text-sm text-gray-400">(347)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-xl">$59.99</span>
+<span class="bg-red-600 text-white text-xs px-2 py-1 rounded">Out of Stock</span>
+</div>
+<button class="w-full mt-4 bg-gray-600 text-white py-2 rounded-button flex items-center justify-center cursor-not-allowed opacity-70 !rounded-button whitespace-nowrap">
+<i class="ri-notification-line mr-2"></i>
+Notify Me
+</button>
+</div>
+</div>
+<!-- Product 5 -->
+<div class="bg-[#162a45] rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-[1.02] group">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=Robot%20Chassis%20Kit%20with%20wheels%2C%20motors%2C%20and%20metal%20frame%2C%20assembled%20robotic%20platform%2C%20professional%20product%20photography%20on%20dark%20background&width=400&height=300&seq=5&orientation=landscape" alt="Robot Chassis Kit" class="w-full h-48 object-cover object-top">
+<div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+<button class="bg-primary text-[#0a192f] px-4 py-2 rounded-button font-medium transform -translate-y-4 group-hover:translate-y-0 transition-all !rounded-button whitespace-nowrap">Quick View</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-medium text-lg mb-2">Robot Chassis Kit</h3>
+<div class="flex items-center mb-3">
+<div class="flex mr-2">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-half-fill text-yellow-400"></i>
+<i class="ri-star-line text-gray-500"></i>
+</div>
+<span class="text-sm text-gray-400">(78)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-xl">$29.99</span>
+<span class="bg-green-600 text-white text-xs px-2 py-1 rounded">In Stock</span>
+</div>
+<button class="w-full mt-4 bg-[#1e3a5e] hover:bg-[#2a4e7a] text-white py-2 rounded-button flex items-center justify-center !rounded-button whitespace-nowrap">
+<i class="ri-shopping-cart-line mr-2"></i>
+Add to Cart
+</button>
+</div>
+</div>
+<!-- Product 6 -->
+<div class="bg-[#162a45] rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-[1.02] group">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=0.96%20inch%20OLED%20Display%20module%20with%20blue%20screen%2C%20detailed%20electronic%20component%20showing%20clear%20pixels%2C%20professional%20product%20photography%20on%20dark%20background&width=400&height=300&seq=6&orientation=landscape" alt="0.96 inch OLED Display" class="w-full h-48 object-cover object-top">
+<div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+<button class="bg-primary text-[#0a192f] px-4 py-2 rounded-button font-medium transform -translate-y-4 group-hover:translate-y-0 transition-all !rounded-button whitespace-nowrap">Quick View</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-medium text-lg mb-2">0.96" OLED Display</h3>
+<div class="flex items-center mb-3">
+<div class="flex mr-2">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-line text-gray-500"></i>
+</div>
+<span class="text-sm text-gray-400">(124)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-xl">$8.99</span>
+<span class="bg-green-600 text-white text-xs px-2 py-1 rounded">In Stock</span>
+</div>
+<button class="w-full mt-4 bg-[#1e3a5e] hover:bg-[#2a4e7a] text-white py-2 rounded-button flex items-center justify-center !rounded-button whitespace-nowrap">
+<i class="ri-shopping-cart-line mr-2"></i>
+Add to Cart
+</button>
+</div>
+</div>
+<!-- Product 7 -->
+<div class="bg-[#162a45] rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-[1.02] group">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=NodeMCU%20ESP8266%20WiFi%20development%20board%20with%20detailed%20pins%20and%20antenna%2C%20professional%20product%20photography%20on%20dark%20background&width=400&height=300&seq=7&orientation=landscape" alt="NodeMCU ESP8266" class="w-full h-48 object-cover object-top">
+<div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+<button class="bg-primary text-[#0a192f] px-4 py-2 rounded-button font-medium transform -translate-y-4 group-hover:translate-y-0 transition-all !rounded-button whitespace-nowrap">Quick View</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-medium text-lg mb-2">NodeMCU ESP8266</h3>
+<div class="flex items-center mb-3">
+<div class="flex mr-2">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-half-fill text-yellow-400"></i>
+</div>
+<span class="text-sm text-gray-400">(186)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-xl">$6.99</span>
+<span class="bg-green-600 text-white text-xs px-2 py-1 rounded">In Stock</span>
+</div>
+<button class="w-full mt-4 bg-[#1e3a5e] hover:bg-[#2a4e7a] text-white py-2 rounded-button flex items-center justify-center !rounded-button whitespace-nowrap">
+<i class="ri-shopping-cart-line mr-2"></i>
+Add to Cart
+</button>
+</div>
+</div>
+<!-- Product 8 -->
+<div class="bg-[#162a45] rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-[1.02] group">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=DHT22%20Temperature%20and%20Humidity%20Sensor%20module%20with%20detailed%20pins%20and%20sensing%20element%2C%20professional%20product%20photography%20on%20dark%20background&width=400&height=300&seq=8&orientation=landscape" alt="DHT22 Temperature & Humidity Sensor" class="w-full h-48 object-cover object-top">
+<div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+<button class="bg-primary text-[#0a192f] px-4 py-2 rounded-button font-medium transform -translate-y-4 group-hover:translate-y-0 transition-all !rounded-button whitespace-nowrap">Quick View</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-medium text-lg mb-2">DHT22 Temperature & Humidity Sensor</h3>
+<div class="flex items-center mb-3">
+<div class="flex mr-2">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-line text-gray-500"></i>
+</div>
+<span class="text-sm text-gray-400">(92)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-xl">$4.49</span>
+<span class="bg-green-600 text-white text-xs px-2 py-1 rounded">In Stock</span>
+</div>
+<button class="w-full mt-4 bg-[#1e3a5e] hover:bg-[#2a4e7a] text-white py-2 rounded-button flex items-center justify-center !rounded-button whitespace-nowrap">
+<i class="ri-shopping-cart-line mr-2"></i>
+Add to Cart
+</button>
+</div>
+</div>
+<!-- Product 9 -->
+<div class="bg-[#162a45] rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-[1.02] group">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=Stepper%20Motor%2028BYJ-48%20with%20ULN2003%20driver%20board%2C%20detailed%20electronic%20component%20showing%20motor%20and%20driver%2C%20professional%20product%20photography%20on%20dark%20background&width=400&height=300&seq=9&orientation=landscape" alt="Stepper Motor 28BYJ-48 with ULN2003" class="w-full h-48 object-cover object-top">
+<div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+<button class="bg-primary text-[#0a192f] px-4 py-2 rounded-button font-medium transform -translate-y-4 group-hover:translate-y-0 transition-all !rounded-button whitespace-nowrap">Quick View</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-medium text-lg mb-2">Stepper Motor 28BYJ-48 with ULN2003</h3>
+<div class="flex items-center mb-3">
+<div class="flex mr-2">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-half-fill text-yellow-400"></i>
+<i class="ri-star-line text-gray-500"></i>
+</div>
+<span class="text-sm text-gray-400">(67)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-xl">$5.99</span>
+<span class="bg-green-600 text-white text-xs px-2 py-1 rounded">In Stock</span>
+</div>
+<button class="w-full mt-4 bg-[#1e3a5e] hover:bg-[#2a4e7a] text-white py-2 rounded-button flex items-center justify-center !rounded-button whitespace-nowrap">
+<i class="ri-shopping-cart-line mr-2"></i>
+Add to Cart
+</button>
+</div>
+</div>
+<!-- Product 10 -->
+<div class="bg-[#162a45] rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-[1.02] group">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=L298N%20Motor%20Driver%20Module%20with%20heat%20sink%20and%20terminal%20blocks%2C%20detailed%20electronic%20component%2C%20professional%20product%20photography%20on%20dark%20background&width=400&height=300&seq=10&orientation=landscape" alt="L298N Motor Driver Module" class="w-full h-48 object-cover object-top">
+<div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+<button class="bg-primary text-[#0a192f] px-4 py-2 rounded-button font-medium transform -translate-y-4 group-hover:translate-y-0 transition-all !rounded-button whitespace-nowrap">Quick View</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-medium text-lg mb-2">L298N Motor Driver Module</h3>
+<div class="flex items-center mb-3">
+<div class="flex mr-2">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-line text-gray-500"></i>
+</div>
+<span class="text-sm text-gray-400">(104)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-xl">$7.49</span>
+<span class="bg-green-600 text-white text-xs px-2 py-1 rounded">In Stock</span>
+</div>
+<button class="w-full mt-4 bg-[#1e3a5e] hover:bg-[#2a4e7a] text-white py-2 rounded-button flex items-center justify-center !rounded-button whitespace-nowrap">
+<i class="ri-shopping-cart-line mr-2"></i>
+Add to Cart
+</button>
+</div>
+</div>
+<!-- Product 11 -->
+<div class="bg-[#162a45] rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-[1.02] group">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=MPU6050%20Accelerometer%20and%20Gyroscope%20Sensor%20module%20with%20detailed%20pins%20and%20chip%2C%20professional%20product%20photography%20on%20dark%20background&width=400&height=300&seq=11&orientation=landscape" alt="MPU6050 Accelerometer and Gyroscope" class="w-full h-48 object-cover object-top">
+<div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+<button class="bg-primary text-[#0a192f] px-4 py-2 rounded-button font-medium transform -translate-y-4 group-hover:translate-y-0 transition-all !rounded-button whitespace-nowrap">Quick View</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-medium text-lg mb-2">MPU6050 Accelerometer and Gyroscope</h3>
+<div class="flex items-center mb-3">
+<div class="flex mr-2">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-half-fill text-yellow-400"></i>
+</div>
+<span class="text-sm text-gray-400">(156)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-xl">$4.99</span>
+<span class="bg-green-600 text-white text-xs px-2 py-1 rounded">In Stock</span>
+</div>
+<button class="w-full mt-4 bg-[#1e3a5e] hover:bg-[#2a4e7a] text-white py-2 rounded-button flex items-center justify-center !rounded-button whitespace-nowrap">
+<i class="ri-shopping-cart-line mr-2"></i>
+Add to Cart
+</button>
+</div>
+</div>
+<!-- Product 12 -->
+<div class="bg-[#162a45] rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-[1.02] group">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=NRF24L01%20Wireless%20Transceiver%20Module%20with%20antenna%2C%20detailed%20electronic%20component%2C%20professional%20product%20photography%20on%20dark%20background&width=400&height=300&seq=12&orientation=landscape" alt="NRF24L01 Wireless Transceiver" class="w-full h-48 object-cover object-top">
+<div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+<button class="bg-primary text-[#0a192f] px-4 py-2 rounded-button font-medium transform -translate-y-4 group-hover:translate-y-0 transition-all !rounded-button whitespace-nowrap">Quick View</button>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-medium text-lg mb-2">NRF24L01 Wireless Transceiver</h3>
+<div class="flex items-center mb-3">
+<div class="flex mr-2">
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-fill text-yellow-400"></i>
+<i class="ri-star-line text-gray-500"></i>
+</div>
+<span class="text-sm text-gray-400">(89)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-xl">$3.49</span>
+<span class="bg-green-600 text-white text-xs px-2 py-1 rounded">In Stock</span>
+</div>
+<button class="w-full mt-4 bg-[#1e3a5e] hover:bg-[#2a4e7a] text-white py-2 rounded-button flex items-center justify-center !rounded-button whitespace-nowrap">
+<i class="ri-shopping-cart-line mr-2"></i>
+Add to Cart
+</button>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-10 flex justify-between items-center">
+<div class="text-sm text-gray-400">
+Showing 1-12 of 48 products
+</div>
+<div class="flex items-center space-x-2">
+<button class="w-10 h-10 flex items-center justify-center bg-[#162a45] text-white rounded-button opacity-50 cursor-not-allowed">
+<i class="ri-arrow-left-s-line"></i>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-[#0a192f] font-medium rounded-button">1</button>
+<button class="w-10 h-10 flex items-center justify-center bg-[#162a45] text-white rounded-button hover:bg-[#1e3a5e]">2</button>
+<button class="w-10 h-10 flex items-center justify-center bg-[#162a45] text-white rounded-button hover:bg-[#1e3a5e]">3</button>
+<button class="w-10 h-10 flex items-center justify-center bg-[#162a45] text-white rounded-button hover:bg-[#1e3a5e]">4</button>
+<button class="w-10 h-10 flex items-center justify-center bg-[#162a45] text-white rounded-button hover:bg-[#1e3a5e]">
+<i class="ri-arrow-right-s-line"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-gray-800 pt-16 pb-8" id="ft-color">
+    <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
+    <div>
+    <a href="#" class="text-2xl font-orbitron flex items-center mb-6">
+      <span class="text-primary font-bold mr-1">Robo</span>
+      <span class="text-white">Horizon</span>
+      <!-- <span class="text-xs text-secondary ml-2 mt-1">Innovate • Build • Research</span> -->
+    </a>
+    <p class="text-gray-400 mb-6">Pioneering the future of robotics with cutting-edge technology and innovative research.</p>
+    <div class="flex space-x-4">
+    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+    <i class="ri-twitter-x-line"></i>
+    </a>
+    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+    <i class="ri-facebook-fill"></i>
+    </a>
+    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+    <i class="ri-instagram-line"></i>
+    </a>
+    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full text-white hover:bg-primary hover:text-gray-900 transition-all">
+    <i class="ri-linkedin-fill"></i>
+    </a>
+    </div>
+    </div>
+    <div>
+    <h3 class="text-lg font-semibold mb-6">Products</h3>
+    <ul class="space-y-3">
+    <li><a href="#" class="text-gray-400 hover:text-primary">Arduino</a></li>
+    <li><a href="#" class="text-gray-400 hover:text-primary">Sensors</a></li>
+    <li><a href="#" class="text-gray-400 hover:text-primary">Motors</a></li>
+    <li><a href="#" class="text-gray-400 hover:text-primary">Robotic Parts</a></li>
+    <li><a href="#" class="text-gray-400 hover:text-primary">Development Kits</a></li>
+    </ul>
+    </div>
+    <div>
+    <h3 class="text-lg font-semibold mb-6">Research</h3>
+    <ul class="space-y-3">
+    <li><a href="#" class="text-gray-400 hover:text-primary">AI & Machine Learning</a></li>
+    <li><a href="#" class="text-gray-400 hover:text-primary">Drone Technology</a></li>
+    <li><a href="#" class="text-gray-400 hover:text-primary">Automation Systems</a></li>
+    <li><a href="#" class="text-gray-400 hover:text-primary">Computer Vision</a></li>
+    <li><a href="#" class="text-gray-400 hover:text-primary">Publications</a></li>
+    </ul>
+    </div>
+    <div>
+    <h3 class="text-lg font-semibold mb-6">Contact</h3>
+    <ul class="space-y-3">
+    <li class="flex items-start">
+    <span class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-3">
+    <i class="ri-map-pin-line"></i>
+    </span>
+    <span class="text-gray-400">123 Innovation Drive, Tech City, TC 54321</span>
+    </li>
+    <li class="flex items-start">
+    <span class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-3">
+    <i class="ri-mail-line"></i>
+    </span>
+    <span class="text-gray-400">info@robotechnexus.com</span>
+    </li>
+    <li class="flex items-start">
+    <span class="w-5 h-5 flex items-center justify-center text-primary mt-1 mr-3">
+    <i class="ri-phone-line"></i>
+    </span>
+    <span class="text-gray-400">+1 (555) 123-4567</span>
+    </li>
+    </ul>
+    </div>
+    </div>
+    <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-700">
+    <div class="mb-4 md:mb-0">
+    <p class="text-gray-500 text-sm">© 2025 RoboTech Nexus. All rights reserved.</p>
+    </div>
+    <div class="flex items-center space-x-6">
+    <a href="#" class="text-gray-500 text-sm hover:text-gray-300">Privacy Policy</a>
+    <a href="#" class="text-gray-500 text-sm hover:text-gray-300">Terms of Service</a>
+    <a href="#" class="text-gray-500 text-sm hover:text-gray-300">Cookie Policy</a>
+    </div>
+    <div class="mt-4 md:mt-0 flex items-center space-x-4">
+    <span class="text-gray-500 text-sm">Payment Methods:</span>
+    <span class="w-8 h-8 flex items-center justify-center text-gray-400">
+    <i class="ri-visa-fill ri-lg"></i>
+    </span>
+    <span class="w-8 h-8 flex items-center justify-center text-gray-400">
+    <i class="ri-mastercard-fill ri-lg"></i>
+    </span>
+    <span class="w-8 h-8 flex items-center justify-center text-gray-400">
+    <i class="ri-paypal-fill ri-lg"></i>
+    </span>
+    </div>
+    </div>
+    </div>
+    </div>
+    </footer>
+    
+<!-- Back to top button -->
+<button id="backToTop" class="fixed bottom-6 right-6 w-12 h-12 flex items-center justify-center bg-primary text-[#0a192f] rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
+<i class="ri-arrow-up-line text-xl"></i>
+</button>
+</div>
+<!-- <script>
+document.addEventListener('DOMContentLoaded', function() {
+// Back to top button
+const backToTopButton = document.getElementById('backToTop');
+window.addEventListener('scroll', function() {
+if (window.pageYOffset > 300) {
+backToTopButton.classList.remove('opacity-0', 'invisible');
+backToTopButton.classList.add('opacity-100', 'visible');
+} else {
+backToTopButton.classList.remove('opacity-100', 'visible');
+backToTopButton.classList.add('opacity-0', 'invisible');
+}
+});
+backToTopButton.addEventListener('click', function() {
+window.scrollTo({
+top: 0,
+behavior: 'smooth'
+});
+});
+});
+document.addEventListener('DOMContentLoaded', function() {
+// Custom checkbox functionality
+const checkboxes = document.querySelectorAll('.custom-checkbox input[type="checkbox"]');
+checkboxes.forEach(checkbox => {
+checkbox.addEventListener('change', function() {
+// Additional functionality can be added here
+});
+});
+});
+document.addEventListener('DOMContentLoaded', function() {
+// Toggle switch functionality
+const switches = document.querySelectorAll('.switch input[type="checkbox"]');
+switches.forEach(switchEl => {
+switchEl.addEventListener('change', function() {
+// Additional functionality can be added here
+});
+});
+}); -->
+<script src="./product.js"></script>
+</body>
+</html>
